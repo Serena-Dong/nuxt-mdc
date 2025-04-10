@@ -26,8 +26,12 @@ export default defineNuxtConfig({
   mdc: {
     components: {
       map: {
-        p: "ProseCode.vue",
+        code: "CustomProseCode",
       },
     },
+  },
+  components: {
+    global: true,
+    dirs: ["./components/prose"],
   },
 });
