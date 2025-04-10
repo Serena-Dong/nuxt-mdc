@@ -27,6 +27,15 @@ export default defineNuxtConfig({
     components: {
       map: {
         code: "CustomProseCode",
+        h1: "CusstomProseH1",
+        h2: "CustomProseH2",
+        h3: "CustomProseH3",
+        h4: "CustomProseH4",
+        h5: "CustomProseH5",
+        h6: "CustomProseH6",
+        p: "CustomProseP",
+        a: "CustomProseA",
+        img: "CustomProseImg",
       },
     },
   },
