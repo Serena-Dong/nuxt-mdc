@@ -1,1 +1,0 @@
-<template>Blog # page</template>
