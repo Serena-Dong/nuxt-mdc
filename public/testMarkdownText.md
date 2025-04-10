@@ -36,7 +36,11 @@ Ordered List:
 
 > This is a blockquote. It is often used to cite sources or highlight quotes. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-Here's a bit of code:
+The line below should be rendered as a CustomProseCode componente
+
+`Inline code is used to highlight a specific piece of code within a sentence.`
+
+Here's a bit of code (will be rendered as 'pre'):
 
 ```js
 // This is a sample JavaScript code
