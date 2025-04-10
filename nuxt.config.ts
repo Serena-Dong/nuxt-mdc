@@ -31,7 +31,11 @@ export default defineNuxtConfig({
     },
   },
   components: {
-    global: true,
-    dirs: ["./components/prose"],
+    dirs: [
+      {
+        global: true,
+        path: "./components/prose",
+      },
+    ],
   },
 });
