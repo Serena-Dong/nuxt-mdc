@@ -45,6 +45,7 @@ export default defineNuxtConfig({
         global: true,
         path: "./components/prose",
       },
+      "~/components",
     ],
   },
 });
