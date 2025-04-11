@@ -112,6 +112,7 @@
    - Visualizza i componenti usando `<MDCRenderer>`.
 
 4. **Testing asincrono:**
+
    - Testa il comportamento dei componenti asincroni.
 
 ---
@@ -143,3 +144,13 @@
    - Assicurati che il contenuto sia correttamente renderizzato.
 
 ---
+
+- Nuxt UI per estetica
+- Layout:
+  - header
+  - homepage
+
+Features:
+
+- code with syntx highlighting (rehype plugins/Shiki etc)
+- snippets
