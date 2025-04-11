@@ -1,5 +1,14 @@
+<script setup lang="ts"></script>
 <template>
-  <div class="app-header bg-[#fff] !p-4 md:!py-6 md:!px-8">
+  <header
+    class="app-header bg-[#fff] !p-4 md:!py-6 md:!px-8 bg-amber-300 drop-shadow-md drop-shadow-neutral-300"
+  >
+    <a
+      href="#main-content"
+      class="box-border fixed z-50 top-0 bg-sky-700 border-2 border-white rounded-b-md text-white text-sm font-medium px-4 py-2 pb-4 -translate-y-full focus:translate-y-0 transition-transform block"
+    >
+      Skip to content
+    </a>
     <div class="flex items-center justify-center md:justify-between uppercase">
       <NuxtLink to="/" class="flex gap-3 items-center no-border">
         <icon
@@ -9,10 +18,16 @@
         <h1>BLOG - Nuxt MDC</h1></NuxtLink
       >
 
-      <div class="md:block flex-1/4 text-end">
-        <h1><NuxtLink to="">CMS</NuxtLink></h1>
+      <div class="md:block text-end">
+        <NuxtLink
+          class="rounded-full aspect-square w-fit p-2 flex justify-center items-center"
+          to=""
+          aria-label="Write a new post"
+          title="Write a new post"
+        >
+          <icon size="24" name="line-md:edit-filled"></icon>
+        </NuxtLink>
       </div>
     </div>
-  </div>
+  </header>
 </template>
-<script></script>

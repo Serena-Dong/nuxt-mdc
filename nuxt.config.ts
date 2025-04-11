@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     components: {
       map: {
         code: "CustomProseCode",
-        h1: "CusstomProseH1",
+        h1: "CustomProseH1",
         h2: "CustomProseH2",
         h3: "CustomProseH3",
         h4: "CustomProseH4",
@@ -45,6 +45,7 @@ export default defineNuxtConfig({
         global: true,
         path: "./components/prose",
       },
+      "~/components",
     ],
   },
 });
