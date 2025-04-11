@@ -1,1 +1,8 @@
-<template><AppHeader /><slot></slot></template>
+<template>
+  <div>
+    <AppHeader />
+    <main id="main-content">
+      <slot></slot>
+    </main>
+  </div>
+</template>
