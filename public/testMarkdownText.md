@@ -1,4 +1,4 @@
-# Heading Level 1
+<!-- # Heading Level 1
 
 ## Heading Level 2
 
@@ -49,4 +49,25 @@ function greet(name) {
 }
 
 console.log(greet("World"));
-```
+``` -->
+
+<!--
+alertInfo: `:::alert
+  Questo è un messaggio importante!
+  :::
+ `,
+helloWorld: `
+  \`\`\`js
+console.log('Hello, world!')
+\`\`\`
+`, -->
+
+::snippet{name="calendar"}
+
+::snippet{name="alert"}
+
+::custom-button{color= 'green'}
+This is a Button
+::
+
+::snippet{name="sizes-text"}
