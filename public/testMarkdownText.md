@@ -51,23 +51,12 @@ function greet(name) {
 console.log(greet("World"));
 ``` -->
 
-<!--
-alertInfo: `:::alert
-  Questo è un messaggio importante!
-  :::
- `,
-helloWorld: `
-  \`\`\`js
-console.log('Hello, world!')
-\`\`\`
-`, -->
-
-::snippet{name="calendar"}
-
-::snippet{name="alert"}
-
-::custom-button{color= 'green'}
-This is a Button
+::snippet{name='alert'}
 ::
 
-::snippet{name="sizes-text"}
+<!-- ::custom-button{color = 'green'}
+This is a Button
+:: -->
+
+::snippet{name='calendar'}
+::
