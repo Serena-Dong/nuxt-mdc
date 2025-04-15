@@ -1,23 +1,17 @@
 <script setup lang="ts">
-const props = defineProps({
-  name: {
-    required: true,
-    type: String,
-  },
-});
+const props = defineProps<{
+  name: string;
+}>();
 
-const snippets = computed(() => {
-  const snippetMap = {
-    alert: `# I'm an alert snippet
-        - Alert 1
-        - Alert 2
-    `,
-    calendar: `# I'm a calendar snippet`,
-  };
-
-  return snippetMap[props.name];
-});
+const { data: snippetContent } = await useFetch(
+  `/api/getSnippet/${props.name}`,
+  {
+    method: "GET",
+  }
+);
 </script>
 <template>
-  <MDC :body="snippets" />
+  <div class="snippet">
+    <MDC v-if="snippetContent" :value="snippetContent" />
+  </div>
 </template>
