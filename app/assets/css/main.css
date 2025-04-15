@@ -21,3 +21,7 @@ h5 {
 h6 {
   @apply text-sm font-medium;
 }
+
+main {
+  @apply p-8;
+}

@@ -9,7 +9,7 @@
     >
       Skip to content
     </a>
-    <div class="flex items-center justify-center md:justify-between uppercase">
+    <div class="flex items-center justify-between uppercase">
       <NuxtLink to="/" class="flex gap-3 items-center no-border">
         <icon
           size="24"
