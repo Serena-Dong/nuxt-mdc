@@ -30,3 +30,29 @@ h6 {
 main {
   @apply p-8;
 }
+
+/* Table styles */
+table {
+  @apply w-full border-collapse mb-4;
+}
+
+th,
+td {
+  @apply border border-gray-300 p-2;
+}
+
+th {
+  @apply bg-gray-200 font-medium text-left;
+}
+
+tr:nth-child(even) {
+  @apply bg-gray-50;
+}
+
+tr:hover {
+  @apply bg-gray-100;
+}
+
+caption {
+  @apply text-sm text-gray-600 mt-1 mb-2;
+}

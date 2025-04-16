@@ -56,19 +56,14 @@ This is a Button
 :: -->
 
 ::snippet{name='alert'}
+::
 
  <br />
 
 ::snippet{name='calendar'}
+::
 
  <br />
 
 ::snippet{name='slot'}
-
-#title
-Please be careful!
-
-#text
-text
-
 ::
