@@ -13,6 +13,6 @@ const buttonClass = computed(() => {
 </script>
 <template>
   <NuxtLink :class="buttonClass + `custom-button py-2 px-4 `"
-    ><slot
+    ><MDCSlot
   /></NuxtLink>
 </template>
