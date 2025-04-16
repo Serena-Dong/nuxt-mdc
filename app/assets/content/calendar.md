@@ -1,1 +1,1 @@
-# I'm a calendar snippet
+# Calendar snippet

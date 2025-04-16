@@ -1,4 +1,4 @@
-# I'm an alert snippet
+# Alert snippet
 
 - Alert 1
 - Alert 2
