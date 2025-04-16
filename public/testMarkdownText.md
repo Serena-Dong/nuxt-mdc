@@ -56,12 +56,10 @@ This is a Button
 :: -->
 
 ::snippet{name='alert'}
-::
 
  <br />
 
 ::snippet{name='calendar'}
-::
 
  <br />
 
