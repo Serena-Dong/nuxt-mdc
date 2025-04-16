@@ -1,4 +1,4 @@
-<!-- # Heading Level 1
+# Heading Level 1
 
 ## Heading Level 2
 
@@ -49,7 +49,7 @@ function greet(name) {
 }
 
 console.log(greet("World"));
-``` -->
+```
 
 <!-- ::custom-button{color = 'green'}
 This is a Button
@@ -67,3 +67,7 @@ This is a Button
 
 ::snippet{name='slot'}
 ::
+
+```
+
+```
