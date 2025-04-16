@@ -2,6 +2,7 @@
 defineProps<{
   title: string;
   description: string;
+  slug: string;
 }>();
 </script>
 
@@ -9,11 +10,13 @@ defineProps<{
   <div
     class="border border-gray-200 rounded-lg p-4 mb-4 hover:bg-gray-50 transition-colors duration-200"
   >
-    <a href="https://example.com/page2" class="block">
+    <NuxtLink :to="`/posts/${slug}`" class="block">
       <h3 class="text-xl font-semibold mb-2">{{ title }}</h3>
-      <p class="text-gray-600 line-clamp-2">
-        {{ description }}
+      <p class="text-gray-600 line-clamp-4 truncate">
+        <Suspense suspensible>
+          <MDC :value="description" unwrap="p" />
+        </Suspense>
       </p>
-    </a>
+    </NuxtLink>
   </div>
 </template>
