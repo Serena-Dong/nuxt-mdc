@@ -7,8 +7,6 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default defineEventHandler(async (event) => {
   const contentDir = resolve("app/assets/content");
-  console.log("Content Directory:", contentDir);
-
   try {
     const files = readdirSync(contentDir).filter((file) =>
       file.endsWith(".md")
@@ -27,7 +25,6 @@ export default defineEventHandler(async (event) => {
       const filePath = resolve(contentDir, file);
       const fileContent = readFileSync(filePath, "utf-8");
       const contentPreview = fileContent.substring(0, 400);
-      console.log("File content:", fileContent);
 
       // Get file stats to determine creation date
       const stats = fs.statSync(filePath);
