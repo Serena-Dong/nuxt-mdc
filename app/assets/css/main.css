@@ -27,10 +27,6 @@ h6 {
   @apply text-sm font-medium;
 }
 
-main {
-  @apply p-8;
-}
-
 /* Table styles */
 table {
   @apply w-full border-collapse mb-4;
