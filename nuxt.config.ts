@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+import langs from "@shikijs/langs/javascript";
 
 export default defineNuxtConfig({
   app: {
@@ -29,7 +30,7 @@ export default defineNuxtConfig({
       // @see https://shiki.style/guide/
       wrapperStyle: "rounded-lg overflow-hidden bg-gray-900",
       theme: "vitesse-light",
-      preload: ["md", "yaml"], // add more languages to preload
+      langs: [...langs, "yaml"], // extend the default languages with yaml and md
     },
     components: {
       map: {
