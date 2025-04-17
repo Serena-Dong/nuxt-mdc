@@ -1,6 +1,3 @@
-::snippet{name='alert'}
-::
-
 # Heading Level 1
 
 ## Heading Level 2
@@ -45,7 +42,8 @@ The line below should be rendered as a CustomProseCode componente
 
 Here's a bit of code (will be rendered as 'pre'):
 
-```js
+<!--
+````js
 // This is a sample JavaScript code
 function greet(name) {
   return `Hello, ${name}!`;
@@ -58,6 +56,7 @@ console.log(greet("World"));
 This is a Button
 ::
 
+ <br />
 ::snippet{name='alert'}
 ::
 
@@ -68,7 +67,7 @@ This is a Button
 
  <br />
 
-::snippet{name='slot'}
+::snippet{name='article'}
 ::
 
 ```

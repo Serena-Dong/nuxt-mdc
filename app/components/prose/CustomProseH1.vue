@@ -7,13 +7,12 @@ const generate = computed(
     props.id &&
     ((typeof headings?.anchorLinks === "boolean" &&
       headings?.anchorLinks === true) ||
-      (typeof headings?.anchorLinks === "object" && headings?.anchorLinks?.h1))
+      (typeof headings?.anchorLinks === "object" && headings?.anchorLinks?.h2))
 );
 </script>
-
 <template>
   <h1 :id="props.id">
-    <a v-if="generate" :href="`#${props.id}`">
+    <a v-if="props.id && generate" :href="`#${props.id}`">
       <slot />
     </a>
     <slot v-else />

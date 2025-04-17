@@ -11,9 +11,9 @@ const { data: snippetContent } = await useFetch(
 );
 </script>
 <template>
-  <div class="snippet">
-    <MDC v-if="snippetContent" :value="snippetContent" />
-    <div class="title"><MDCSlot name="title" mdc-unwrap="h1" /></div>
-    <div class="text"><MDCSlot name="text" mdc-unwrap="p" /></div>
-  </div>
+  <Suspense suspensible>
+    <div class="snippet">
+      <MDC v-if="snippetContent" :value="snippetContent" />
+    </div>
+  </Suspense>
 </template>
