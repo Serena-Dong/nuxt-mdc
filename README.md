@@ -117,7 +117,25 @@
 
 ---
 
-## 5. Mock CMS per Contenuti Markdown Dinamici
+## 5. Experiment with markdown parser (remark)
+
+Under the hood, Nuxt MDC uses `remark` to parse the markdown content into Abstract Syntax Tree (AST, aka a Javascript object) and `rehype` to convert the AST into HTML.
+Explore the libraries to find ways to solve the following problems.
+`remark` discourages direct manipulation of the parser and instead encourages the use of extensions. This task mostly deals with trying to use `remark` plugins to solve the problems below.
+You can also use `rehype` plugins if you want to modify how the AST is converted into HTML.
+
+1. Check the docs to see if any extensions solves the problems in the list below. [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins), [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins)
+2. Create a custom plugin to handle specific markdown syntax
+   Example:s
+
+- add a function that localizes internal paths in markdown (i.e.: [link](/posts/test-markdown-text) => <a href="/en-us/posts/test-markdown-text">link</a>) -> i.e. with localized routes like with nuxt-i18n-micro
+- add an extension to convert [lang=xx](word) to <span lang="xx">word</span>
+- add an extension to convert **word** to <u>word</u>
+- handle nested lists
+
+---
+
+## 6. Mock CMS per Contenuti Markdown Dinamici
 
 **Obiettivo:** Simulare un CMS per contenuti markdown dinamici.
 
@@ -154,14 +172,3 @@ Features:
 
 - code with syntx highlighting (rehype plugins/Shiki etc)
 - snippets
-
-## 6. Try to configure remark to implement extensions to the markdown parser
-
-1. Install remark and rehype plugins
-2. Create a custom plugin to handle specific markdown syntax
-   Example:
-
-- add a function that localizes internal paths in markdown (i.e.: [link](/posts/test-markdown-text) => <a href="/en-us/posts/test-markdown-text">link</a>) -> i.e. with localized routes like with nuxt-i18n-micro
-- add an extension to convert [lang=xx](word) to <span lang="xx">word</span>
-- add an extension to convert **word** to <u>word</u>
-- handle nested lists
