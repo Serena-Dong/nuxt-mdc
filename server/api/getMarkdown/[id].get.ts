@@ -11,7 +11,5 @@ export default defineEventHandler(async (event) => {
   await delay(1000); // Simulate a network delay of 1 second
   const fileContent = readFileSync(filePath, "utf-8");
 
-  const contentHeader = `# Article ${id}\n`;
-
-  return contentHeader + fileContent;
+  return fileContent;
 });
