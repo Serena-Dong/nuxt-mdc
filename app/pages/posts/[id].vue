@@ -6,6 +6,13 @@ const { data: articleContent } = await useFetch(
 );
 </script>
 <template>
-  <MDC v-if="articleContent" tag="article" :value="articleContent" />
-  <div v-else>No content</div>
+  <div class="min-h-full">
+    <MDC
+      v-if="articleContent"
+      class="min-h-full"
+      tag="article"
+      :value="articleContent"
+    />
+    <div v-else>No content</div>
+  </div>
 </template>

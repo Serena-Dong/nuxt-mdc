@@ -2,7 +2,7 @@
 const { data: posts } = await useFetch("/api/getMarkdown", { method: "GET" });
 </script>
 <template>
-  <div class="!p-4 md:!p-8 md:!pb-4">
+  <div class="!p-4 md:!p-8 md:!pb-4 min-h-full">
     <h1>Welcome to my blog</h1>
     <h2>Posts list</h2>
     <div
