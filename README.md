@@ -154,3 +154,14 @@ Features:
 
 - code with syntx highlighting (rehype plugins/Shiki etc)
 - snippets
+
+## 6. Try to configure remark to implement extensions to the markdown parser
+
+1. Install remark and rehype plugins
+2. Create a custom plugin to handle specific markdown syntax
+   Example:
+
+- add a function that localizes internal paths in markdown (i.e.: [link](/posts/test-markdown-text) => <a href="/en-us/posts/test-markdown-text">link</a>) -> i.e. with localized routes like with nuxt-i18n-micro
+- add an extension to convert [lang=xx](word) to <span lang="xx">word</span>
+- add an extension to convert **word** to <u>word</u>
+- handle nested lists
