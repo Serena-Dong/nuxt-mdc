@@ -5,11 +5,22 @@ import { readFileSync } from "fs";
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event);
+  try {
+    const { id } = getRouterParams(event);
 
-  const filePath = resolve(`app/assets/content/${id}.md`);
-  await delay(1000); // Simulate a network delay of 1 second
-  const fileContent = readFileSync(filePath, "utf-8");
+    const filePath = resolve(`app/assets/content/${id}.md`);
+    await delay(1000); // Simulate a network delay of 1 second
+    const fileContent = readFileSync(filePath, "utf-8");
 
-  return fileContent;
+    return fileContent;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw createError(error);
+    } else
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Internal Server Error",
+        message: "An unexpected error occurred while fetching page content.",
+      });
+  }
 });
