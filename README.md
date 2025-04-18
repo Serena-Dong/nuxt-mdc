@@ -94,7 +94,7 @@
 
 ### Requisiti:
 
-- Uso di Setup asincrono
+- Uso di Setup asincrono [(in realtà basta mettere script setup)](https://vuejs.org/api/sfc-script-setup.html#top-level-await)
 - Componenti Vue
 
 ### Scaletta:
