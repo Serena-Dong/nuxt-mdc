@@ -4,3 +4,9 @@ This is an alert message I need to be rendering as Markdown. This alert can be i
 
 - Alert 1
 - Alert 2
+
+This snippet is very big and should also have some code inside it.
+
+```js
+console.log("Hello, world!");
+```

@@ -7,11 +7,11 @@ const { data: articleContent } = await useFetch(
 </script>
 <template>
   <div
-    class="min-h-full h-0 p-4 md:p-8 md:pb-4 md:px-1/10 lg:px-1/7 xl:px-1/4 bg-amber-200"
+    class="min-h-full p-4 md:p-8 md:pb-4 md:px-1/10 lg:px-1/7 xl:px-1/4 bg-amber-200"
   >
     <MDC
       v-if="articleContent"
-      class="min-h-full mx-auto max-w-200 bg-white"
+      class="min-h-full mx-auto max-w-200 bg-white markdown-content"
       tag="article"
       :value="articleContent"
     />

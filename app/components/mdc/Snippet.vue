@@ -20,7 +20,7 @@ const { data: snippetContent } = isRecursiveSnippet
 <template>
   <Suspense suspensible>
     <div v-if="snippetContent" class="snippet">
-      <MDC :value="snippetContent" />
+      <MDC class="markdown-content" :value="snippetContent" />
     </div>
   </Suspense>
 </template>
