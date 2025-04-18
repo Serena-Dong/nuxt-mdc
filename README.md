@@ -129,7 +129,7 @@ link homepage -> [Homepage](/)
 
 #### Esempio di componente asincrono:
 
-   Un banner che contiene dei metodi di spedizione, che vengono fetchati lato client (aka al mounted) -> credo si possa simulare settando `server` a false (https://nuxt.com/docs/api/composables/use-fetch#params)
+   Un banner che contiene dei metodi di spedizione, che vengono fetchati lato client (aka al mounted) -> credo si possa simulare settando l'option `server` a false (https://nuxt.com/docs/api/composables/use-fetch#params)
 
 ---
 
