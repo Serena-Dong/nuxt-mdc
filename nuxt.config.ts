@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+import langs from "@shikijs/langs/javascript";
 
 export default defineNuxtConfig({
   app: {
@@ -24,8 +25,16 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   mdc: {
+    highlight: {
+      // shiki is the default highlighter, you can find more info on supported themes and languages in shiki documentation
+      // @see https://shiki.style/guide/
+      wrapperStyle: "rounded-lg overflow-hidden bg-gray-900",
+      theme: "vitesse-light",
+      langs: [...langs, "yaml"], // extend the default languages with yaml and md
+    },
     components: {
       map: {
+        // here you can override the default components with your own
         code: "CustomProseCode",
         h1: "CustomProseH1",
         h2: "CustomProseH2",
@@ -42,6 +51,7 @@ export default defineNuxtConfig({
   components: {
     dirs: [
       {
+        // Custom Prose components need to be added to the global components
         global: true,
         path: "~/components/Prose",
       },

@@ -50,11 +50,11 @@ function greet(name) {
 }
 
 console.log(greet("World"));
-``` -->
+```
 
-<!-- ::custom-button{color = 'green'}
+::custom-button{color = 'green'}
 This is a Button
-:: -->
+::
 
  <br />
 ::snippet{name='alert'}

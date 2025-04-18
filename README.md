@@ -83,8 +83,20 @@
    - Usa `provide/inject` per gestire i dati tra componenti.
 
 3. **Rendering e verifica:**
+
    - Utilizza MDC per renderizzare gli snippet.
    - Prevenire ricorsioni nei componnti snippet.
+
+Per tornare alla home page puoi usare il link :snippet-inline{name="link-homepage"}
+
+link homepage -> [Homepage](/)
+
+<p>Per tornare alla home page puoi usare il link <span class="snippet-inline"><a href="/">Homepage</a></span></p>
+
+<p>Per tornare alla home page puoi usare il link :snippet-inline{name="link-homepage"}</p>
+
+```vue
+
 
 ---
 
@@ -94,7 +106,7 @@
 
 ### Requisiti:
 
-- Uso di Setup asincrono
+- Uso di Setup asincrono [(in realtà basta mettere script setup)](https://vuejs.org/api/sfc-script-setup.html#top-level-await)
 - Componenti Vue
 
 ### Scaletta:
@@ -115,9 +127,31 @@
 
    - Testa il comportamento dei componenti asincroni.
 
+#### Esempio di componente asincrono:
+
+   Un banner che contiene dei metodi di spedizione, che vengono fetchati lato client (aka al mounted) -> credo si possa simulare settando l'option `server` a false (https://nuxt.com/docs/api/composables/use-fetch#params)
+
 ---
 
-## 5. Mock CMS per Contenuti Markdown Dinamici
+## 5. Experiment with markdown parser (remark)
+
+Under the hood, Nuxt MDC uses `remark` to parse the markdown content into Abstract Syntax Tree (AST, aka a Javascript object) and `rehype` to convert the AST into HTML.
+Explore the libraries to find ways to solve the following problems.
+`remark` discourages direct manipulation of the parser and instead encourages the use of extensions. This task mostly deals with trying to use `remark` plugins to solve the problems below.
+You can also use `rehype` plugins if you want to modify how the AST is converted into HTML.
+
+1. Check the docs to see if any extensions solves the problems in the list below. [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins), [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins)
+2. Create a custom plugin to handle specific markdown syntax
+   Example:s
+
+- add a function that localizes internal paths in markdown (i.e.: [link](/posts/test-markdown-text) => <a href="/en-us/posts/test-markdown-text">link</a>) -> i.e. with localized routes like with nuxt-i18n-micro
+- add an extension to convert [lang=xx](word) to <span lang="xx">word</span>
+- add an extension to convert **word** to <u>word</u>
+- handle nested lists
+
+---
+
+## 6. Mock CMS per Contenuti Markdown Dinamici
 
 **Obiettivo:** Simulare un CMS per contenuti markdown dinamici.
 
@@ -154,3 +188,4 @@ Features:
 
 - code with syntx highlighting (rehype plugins/Shiki etc)
 - snippets
+```
