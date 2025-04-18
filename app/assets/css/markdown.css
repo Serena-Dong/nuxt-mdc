@@ -1,0 +1,108 @@
+@layer components {
+  .markdown-content {
+    @apply p-4;
+
+    /* Common paragraph styles */
+    & p {
+      @apply my-4;
+    }
+
+    /* Element specific margins for headings */
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+      @apply mt-8 mb-4;
+    }
+
+    & ul,
+    & ol {
+      @apply my-4 ml-6;
+    }
+
+    & li {
+      @apply mb-2;
+    }
+
+    & blockquote {
+      @apply my-6 pl-4 border-l-4 border-gray-300;
+    }
+
+    & hr {
+      @apply my-8;
+    }
+
+    & img {
+      @apply my-6;
+    }
+
+    & pre {
+      @apply my-6;
+    }
+
+    /* First/last child overrides */
+    & p:first-child,
+    & h1:first-child,
+    & h2:first-child,
+    & h3:first-child,
+    & h4:first-child,
+    & h5:first-child,
+    & h6:first-child,
+    & ul:first-child,
+    & ol:first-child,
+    & blockquote:first-child,
+    & pre:first-child {
+      @apply mt-0;
+    }
+
+    & p:last-child,
+    & h1:last-child,
+    & h2:last-child,
+    & h3:last-child,
+    & h4:last-child,
+    & h5:last-child,
+    & h6:last-child,
+    & ul:last-child,
+    & ol:last-child,
+    & blockquote:last-child,
+    & pre:last-child {
+      @apply mb-0;
+    }
+
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+      @apply mt-8 mb-4;
+    }
+
+    & ul,
+    & ol {
+      @apply my-4 ml-6;
+    }
+
+    & li {
+      @apply mb-2;
+    }
+
+    & blockquote {
+      @apply my-6 pl-4 border-l-4 border-gray-300;
+    }
+
+    & hr {
+      @apply my-8;
+    }
+
+    & img {
+      @apply my-6;
+    }
+
+    & pre {
+      @apply my-6;
+    }
+  }
+}

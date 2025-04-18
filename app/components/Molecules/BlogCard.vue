@@ -19,7 +19,7 @@ const parsedDate = computed(() => new Date(props.date));
       <h3 class="text-xl font-semibold mb-2">{{ title }}</h3>
       <p class="text-gray-600 line-clamp-4 truncate">
         <Suspense suspensible>
-          <MDC :value="description" unwrap="p" />
+          <MDC class="markdown-content" :value="description" unwrap="p" />
         </Suspense>
       </p>
     </NuxtLink>
