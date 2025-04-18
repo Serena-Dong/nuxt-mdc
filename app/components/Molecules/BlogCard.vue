@@ -8,7 +8,7 @@ const parsedDate = computed(() => new Date(props.date));
 
 <template>
   <div
-    class="border border-gray-200 rounded-lg p-4 mb-4 hover:bg-gray-50 transition-colors duration-200"
+    class="blog-card border border-gray-200 rounded-lg p-4 mb-4 hover:bg-gray-50 transition-colors duration-200"
   >
     <NuxtLink :to="`/posts/${slug}`" class="block">
       <p class="text-sm text-right">

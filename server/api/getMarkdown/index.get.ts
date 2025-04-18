@@ -64,7 +64,7 @@ export default defineEventHandler(async (event) => {
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
-    await delay(2000); // Simulate a network delay of 1 second
+    await delay(2000); // Simulate a network delay of 2 second seconds
     return articles;
   } catch (error) {
     throw createError({
