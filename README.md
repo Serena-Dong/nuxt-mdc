@@ -83,8 +83,20 @@
    - Usa `provide/inject` per gestire i dati tra componenti.
 
 3. **Rendering e verifica:**
+
    - Utilizza MDC per renderizzare gli snippet.
    - Prevenire ricorsioni nei componnti snippet.
+
+Per tornare alla home page puoi usare il link :snippet-inline{name="link-homepage"}
+
+link homepage -> [Homepage](/)
+
+<p>Per tornare alla home page puoi usare il link <span class="snippet-inline"><a href="/">Homepage</a></span></p>
+
+<p>Per tornare alla home page puoi usare il link :snippet-inline{name="link-homepage"}</p>
+
+```vue
+
 
 ---
 
@@ -114,6 +126,10 @@
 4. **Testing asincrono:**
 
    - Testa il comportamento dei componenti asincroni.
+
+#### Esempio di componente asincrono:
+
+   Un banner che contiene dei metodi di spedizione, che vengono fetchati lato client (aka al mounted) -> credo si possa simulare settando `server` a false (https://nuxt.com/docs/api/composables/use-fetch#params)
 
 ---
 
@@ -172,3 +188,4 @@ Features:
 
 - code with syntx highlighting (rehype plugins/Shiki etc)
 - snippets
+```
