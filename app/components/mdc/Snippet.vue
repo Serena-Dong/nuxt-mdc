@@ -13,7 +13,7 @@ isRecursiveSnippet
     )
   : provide(SNIPPET_INJECTION_KEY, new Set([...parentSnippets, props.name]));
 
-const { data: snippetContent } = isRepeating
+const { data: snippetContent } = isRecursiveSnippet
   ? { data: ref(null) }
   : await useFetch(`/api/getSnippet/${props.name}`, { method: "GET" });
 </script>
