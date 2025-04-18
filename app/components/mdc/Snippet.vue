@@ -5,9 +5,9 @@ const props = defineProps<{
 
 const SNIPPET_INJECTION_KEY = "snippet-parent-nodes";
 const parentSnippets = inject<Set<string>>(SNIPPET_INJECTION_KEY, new Set());
-const isRepeating = parentSnippets.has(props.name);
+const isRecursiveSnippet = parentSnippets.has(props.name);
 
-isRepeating
+isRecursiveSnippet
   ? console.log(
       `Snippet "${props.name}" is repeating and will not be fetched again.`
     )
