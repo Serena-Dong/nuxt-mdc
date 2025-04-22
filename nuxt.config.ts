@@ -20,7 +20,27 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@nuxt/image", "@nuxt/icon", "@nuxtjs/mdc"],
   future: { compatibilityVersion: 4 },
   css: ["~/assets/css/main.css"],
-
+  fonts: {
+    defaults: {
+      weights: [400],
+      styles: ["normal", "italic"],
+      subsets: [
+        "cyrillic-ext",
+        "cyrillic",
+        "greek-ext",
+        "greek",
+        "vietnamese",
+        "latin-ext",
+        "latin",
+      ],
+    },
+    families: [
+      {
+        name: "Montserrat",
+        provider: "google",
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
