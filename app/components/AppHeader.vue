@@ -17,7 +17,7 @@
         </ul>
       </div>
 
-      <div class="flex items-center justify-center gap-2">
+      <div class="flex items-center justify-center">
         <h1 class="uppercase text-7xl md:text-8xl">Minimal Blog</h1>
       </div>
     </div>
