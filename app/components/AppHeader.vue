@@ -1,9 +1,11 @@
 <script setup lang="ts"></script>
 <template>
   <header>
-    <div class="p-4">
-      <div class="flex justify-between items-center border-b-2 border-gray-400">
-        <h5 class="uppercase">Nuxt-mdc</h5>
+    <div class="p-4 md:px-8">
+      <div
+        class="flex justify-between items-center border-b-2 border-gray-400 pb-2"
+      >
+        <h6 class="uppercase">Nuxt-mdc</h6>
 
         <ul class="flex text-gray-500 gap-2">
           <li>
@@ -15,10 +17,6 @@
             </NuxtLink>
           </li>
         </ul>
-      </div>
-
-      <div class="flex items-center justify-center">
-        <h1 class="uppercase text-7xl md:text-8xl">Minimal Blog</h1>
       </div>
     </div>
   </header>
