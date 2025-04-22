@@ -35,6 +35,9 @@ const parsedDate = computed(() => new Date(props.date));
             `${parsedDate.getDay()}-${parsedDate.getMonth()}-${parsedDate.getFullYear()}`
           }}
         </p>
+        <p class="text-sm text-right hidden items-center gap-2 md:flex">
+          Read more<icon name="line-md:arrow-right"></icon>
+        </p>
       </div>
     </NuxtLink>
   </div>
