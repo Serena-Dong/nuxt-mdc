@@ -2,7 +2,10 @@
 const { data: posts } = await useFetch("/api/getMarkdown", { method: "GET" });
 </script>
 <template>
-  <div class="!p-4 md:!p-8 md:!pb-4 min-h-full">
+  <div class="min-h-full p-4 pt-0 md:p-8 md:!pt-0">
+    <div class="flex items-center justify-center mb-4 md:mb-8">
+      <h1 class="uppercase text-7xl md:text-8xl">Minimal Blog</h1>
+    </div>
     <div v-if="posts?.length" class="">
       <MoleculesBlogCard v-for="post in posts" :key="post.slug" v-bind="post" />
     </div>
