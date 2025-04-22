@@ -14,13 +14,13 @@ export default defineEventHandler(async (event) => {
     );
 
     const articles = files
-      .map((file) => {
+      .map((file, index) => {
         const slug = file.replace(".md", "");
         const words = slug.split("-");
         // Capitalize only the first word
         const title = words
-          .map((word, index) =>
-            index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
+          .map((word, idx) =>
+            idx === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
           )
           .join(" ");
 
@@ -31,14 +31,14 @@ export default defineEventHandler(async (event) => {
         // Get file stats to determine creation date
         const stats = fs.statSync(filePath);
 
-        const articleInfo: BlogCardProps = {
+        const articleInfo: BlogCardProps & { id: number } = {
+          id: index + 1,
           slug,
           title,
           description: contentPreview,
           date: stats.birthtime.toISOString(), // File creation date
         };
 
-        // Check if the object is valued for all properties and print a log for the missing ones
         const areAllPropertiesPresent = Object.entries(articleInfo).every(
           ([propertyKey, propertyValue]) => {
             const hasValue =
@@ -54,9 +54,8 @@ export default defineEventHandler(async (event) => {
           }
         );
 
-        // If one of the property is missing, return null
         return areAllPropertiesPresent ? articleInfo : null;
-      }) // Filter out null values from the article list
+      })
       .filter((article) => article !== null) as BlogCardProps[];
 
     // Sort articles by date (newest first) -> the dates need to be converted from ISO to Date objects

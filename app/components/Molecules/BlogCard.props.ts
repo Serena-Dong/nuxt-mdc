@@ -4,4 +4,5 @@ export type BlogCardProps = {
   slug: string;
   /** The ISO string of the creation date  */
   date: string;
+  id: number;
 };
