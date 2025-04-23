@@ -14,7 +14,7 @@
         <h6 class="uppercase">Nuxt-mdc</h6>
 
         <ul class="flex text-gray-500 gap-2">
-          <li>
+          <li class="list-none">
             <NuxtLink
               class="flex items-center gap-2"
               to="https://nuxt.com/modules/mdc"
