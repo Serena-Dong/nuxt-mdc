@@ -11,7 +11,7 @@
         >
           Skip to content
         </a>
-        <h6 class="uppercase">Nuxt-mdc</h6>
+        <span class="uppercase">Nuxt-mdc</span>
 
         <ul class="flex text-gray-500 gap-2">
           <li class="list-none">
