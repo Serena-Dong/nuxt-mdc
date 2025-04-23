@@ -4,6 +4,7 @@ import langs from "@shikijs/langs/javascript";
 
 export default defineNuxtConfig({
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       title: "Blog - Nuxt MDC",
       link: [
@@ -17,10 +18,36 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxt/image", "@nuxt/icon", "@nuxtjs/mdc"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxt/image",
+    "@nuxt/icon",
+    "@nuxtjs/mdc",
+    "@nuxt/fonts",
+  ],
   future: { compatibilityVersion: 4 },
   css: ["~/assets/css/main.css"],
-
+  fonts: {
+    defaults: {
+      weights: [400, 600, 700],
+      styles: ["normal", "italic"],
+      subsets: [
+        "cyrillic-ext",
+        "cyrillic",
+        "greek-ext",
+        "greek",
+        "vietnamese",
+        "latin-ext",
+        "latin",
+      ],
+    },
+    families: [
+      {
+        name: "Montserrat",
+        provider: "google",
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
