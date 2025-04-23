@@ -15,11 +15,11 @@ const cleanTitle = typeof title === "string" ? title.replace(/-/g, " ") : "";
         <div class="go-back">
           <NuxtLink to="/" class="flex items-center gap-2 uppercase">
             <icon name="line-md:arrow-left"></icon>
-            <h6>Go back</h6></NuxtLink
+            <span class="font-medium">Go back</span></NuxtLink
           >
         </div>
         <div class="page-name">
-          <h3 class="uppercase">Minimal Blog</h3>
+          <h1 class="uppercase !text-xl">Minimal Blog</h1>
         </div>
       </div>
     </div>
