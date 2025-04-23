@@ -64,8 +64,8 @@ export default defineEventHandler(async (event) => {
     );
 
     // Assign post numbers based on the sorted order
-    articles.map((article, index) => {
-      article.postNumber = index + 1; // Assign post number
+    articles.map((article, index, articlesArray) => {
+      article.postNumber = articlesArray.length - index; // Assign post number
       return article;
     });
 
