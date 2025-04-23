@@ -34,6 +34,13 @@ const parsedDate = computed(() => new Date(props.date));
           {{
             `${parsedDate.getDay()}-${parsedDate.getMonth()}-${parsedDate.getFullYear()}`
           }}
+          <i>
+            {{ parsedDate.getHours() }}:{{
+              parsedDate.getMinutes() < 10
+                ? "0" + parsedDate.getMinutes()
+                : parsedDate.getMinutes()
+            }}
+          </i>
         </p>
         <p class="text-sm text-right hidden items-center gap-2 md:flex">
           Read more<icon name="line-md:arrow-right"></icon>
