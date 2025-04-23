@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
         // Get file stats to determine creation date
         const stats = fs.statSync(filePath);
 
-        const articleInfo: BlogCardProps & { id: number } = {
+        const articleInfo: BlogCardProps = {
           id: index + 1,
           slug,
           title,
