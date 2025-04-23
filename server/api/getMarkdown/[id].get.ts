@@ -6,9 +6,9 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default defineEventHandler(async (event) => {
   try {
-    const { id } = getRouterParams(event);
+    const { postNumber } = getRouterParams(event);
 
-    const filePath = resolve(`app/assets/content/${id}.md`);
+    const filePath = resolve(`app/assets/content/${postNumber}.md`);
     await delay(1000); // Simulate a network delay of 1 second
     const fileContent = readFileSync(filePath, "utf-8");
 

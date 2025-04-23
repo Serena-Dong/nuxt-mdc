@@ -11,7 +11,7 @@ const parsedDate = computed(() => new Date(props.date));
     <NuxtLink class="flex py-4 items-center" :to="`/posts/${slug}`">
       <!-- ID -->
       <div class="basis-1/12">
-        <p>{{ id }}</p>
+        <p>{{ postNumber }}</p>
       </div>
       <!-- Content -->
       <div class="basis-7/12">
