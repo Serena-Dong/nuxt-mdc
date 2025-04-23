@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
         const stats = fs.statSync(filePath);
 
         const articleInfo: BlogCardProps = {
-          id: index + 1,
+          postNumber: 0,
           slug,
           title,
           description: contentPreview,
@@ -62,6 +62,12 @@ export default defineEventHandler(async (event) => {
     articles.sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
+
+    // Assign post numbers based on the sorted order
+    articles.map((article, index) => {
+      article.postNumber = index + 1; // Assign post number
+      return article;
+    });
 
     await delay(2000); // Simulate a network delay of 2 second seconds
     return articles;
