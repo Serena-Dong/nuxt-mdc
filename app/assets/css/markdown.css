@@ -1,6 +1,8 @@
 @layer components {
   .markdown-content {
-    @apply p-4;
+    &article {
+      @apply p-4;
+    }
 
     /* Common paragraph styles */
     p {

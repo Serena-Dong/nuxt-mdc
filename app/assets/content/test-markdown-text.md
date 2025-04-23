@@ -1,4 +1,4 @@
-# Heading Level 1
+<!-- # Heading Level 1
 
 ## Heading Level 2
 
@@ -40,7 +40,7 @@ The line below should be rendered as a CustomProseCode componente
 
 `Inline code is used to highlight a specific piece of code within a sentence.`
 
-Here's a bit of code (will be rendered as 'pre'):
+Here's a bit of code (will be rendered as 'pre'): -->
 
 <!--
 ````js
@@ -56,7 +56,7 @@ console.log(greet("World"));
 This is a Button
 ::
 
- <br />
+ <!-- <br />
 ::snippet{name='alert'}
 ::
 
@@ -68,8 +68,14 @@ This is a Button
  <br />
 
 ::snippet{name='article'}
-::
+:: -->
 
 ```
 
 ```
+
+A simple :snippet-inline{name="banana"}
+
+Paragraph a :snippet-inline{name="banana"}
+
+Paragraph b :snippet-inline{name="banana"}
