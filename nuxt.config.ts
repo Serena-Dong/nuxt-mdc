@@ -4,6 +4,7 @@ import langs from "@shikijs/langs/javascript";
 
 export default defineNuxtConfig({
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       title: "Blog - Nuxt MDC",
       link: [
