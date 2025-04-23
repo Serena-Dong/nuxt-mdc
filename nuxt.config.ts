@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   fonts: {
     defaults: {
-      weights: [400],
+      weights: [400, 600, 700],
       styles: ["normal", "italic"],
       subsets: [
         "cyrillic-ext",
