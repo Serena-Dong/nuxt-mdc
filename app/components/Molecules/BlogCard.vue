@@ -16,16 +16,6 @@ const parsedDate = computed(() => new Date(props.date));
       <!-- Content -->
       <div class="basis-7/12">
         <p class="text-xl">{{ title }}</p>
-        <!-- Todo: to be revised -->
-        <!-- <div class="box border w-[350px] h-[150px]">
-          <Suspense suspensible>
-            <MDC
-              class="markdown-content truncate"
-              :value="description"
-              unwrap="p"
-            />
-          </Suspense>
-        </div> -->
       </div>
       <!-- Actions -->
       <div class="basis-4/12 flex gap-2 items-center justify-between">
