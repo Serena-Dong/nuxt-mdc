@@ -56,4 +56,11 @@
   caption {
     @apply text-sm text-gray-600 mt-1 mb-2;
   }
+
+  ul li {
+    list-style: outside;
+  }
+  ol li {
+    list-style: decimal;
+  }
 }
