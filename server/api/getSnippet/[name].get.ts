@@ -3,6 +3,7 @@ import { readFileSync } from "fs";
 
 export default defineEventHandler(async (event) => {
   const { name } = getRouterParams(event);
+
   // The 'inline' query param determines where the server api will look for the snippet files
   const query = getQuery(event);
   const directory = query.inline === "true" ? "inline-snippets" : "snippets";
@@ -10,7 +11,6 @@ export default defineEventHandler(async (event) => {
   try {
     const filePath = resolve(join(`app/assets/${directory}`, `${name}.md`));
     const fileContent = readFileSync(filePath, "utf-8");
-    console.log(fileContent);
 
     return fileContent;
   } catch (error) {
