@@ -14,13 +14,13 @@ export default defineEventHandler(async (event) => {
     );
 
     const articles = files
-      .map((file) => {
+      .map((file, index) => {
         const slug = file.replace(".md", "");
         const words = slug.split("-");
         // Capitalize only the first word
         const title = words
-          .map((word, index) =>
-            index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
+          .map((word, idx) =>
+            idx === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
           )
           .join(" ");
 
@@ -32,13 +32,13 @@ export default defineEventHandler(async (event) => {
         const stats = fs.statSync(filePath);
 
         const articleInfo: BlogCardProps = {
+          postNumber: 0,
           slug,
           title,
           description: contentPreview,
           date: stats.birthtime.toISOString(), // File creation date
         };
 
-        // Check if the object is valued for all properties and print a log for the missing ones
         const areAllPropertiesPresent = Object.entries(articleInfo).every(
           ([propertyKey, propertyValue]) => {
             const hasValue =
@@ -54,15 +54,20 @@ export default defineEventHandler(async (event) => {
           }
         );
 
-        // If one of the property is missing, return null
         return areAllPropertiesPresent ? articleInfo : null;
-      }) // Filter out null values from the article list
+      })
       .filter((article) => article !== null) as BlogCardProps[];
 
     // Sort articles by date (newest first) -> the dates need to be converted from ISO to Date objects
     articles.sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
+
+    // Assign post numbers based on the sorted order
+    articles.map((article, index, articlesArray) => {
+      article.postNumber = articlesArray.length - index; // Assign post number
+      return article;
+    });
 
     await delay(2000); // Simulate a network delay of 2 second seconds
     return articles;
