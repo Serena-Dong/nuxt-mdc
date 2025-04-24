@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { data: posts } = await useFetch("/api/getMarkdown", { method: "GET" });
+// const { data: posts } = await useFetch("/api/getMarkdown", { method: "GET" });
+
+const { data: posts } = await useFetch("/api/posts", {
+  method: "GET",
+});
 </script>
 <template>
   <div class="min-h-full p-4 pt-0 md:p-8 md:!pt-0">
@@ -7,7 +11,11 @@ const { data: posts } = await useFetch("/api/getMarkdown", { method: "GET" });
       <h1 class="uppercase text-7xl md:text-8xl">Minimal Blog</h1>
     </div>
     <div v-if="posts?.length" class="">
-      <MoleculesBlogCard v-for="post in posts" :key="post.slug" v-bind="post" />
+      <MoleculesBlogCard
+        v-for="post in posts"
+        :key="post.postInfo.slug"
+        v-bind="post.postInfo"
+      />
     </div>
     <div v-else class="py-5 text-center">
       <p class="text-gray-500">

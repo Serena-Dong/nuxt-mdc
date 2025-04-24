@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { data: articleContent } = await useFetch(
-  `/api/getMarkdown/${route.params.id}`,
+  `/api/posts/${route.params.id}`,
   { method: "GET" }
 );
 
@@ -27,10 +27,10 @@ const cleanTitle = typeof title === "string" ? title.replace(/-/g, " ") : "";
       <div class="flex flex-col gap-4">
         <h1 class="uppercase">{{ cleanTitle }}</h1>
         <MDC
-          v-if="articleContent"
+          v-if="articleContent?.content"
           class="min-h-full mx-auto max-w-200 markdown-content"
           tag="article"
-          :value="articleContent"
+          :value="articleContent.content"
         />
         <div v-else>No content</div>
       </div>
