@@ -15,12 +15,12 @@ isRecursiveSnippet
 
 const { data: snippetContent } = isRecursiveSnippet
   ? { data: ref(null) }
-  : await useFetch(`/api/getSnippet/${props.name}`, { method: "GET" });
+  : await useFetch(`/api/snippets/${props.name}`, { method: "GET" });
 </script>
 <template>
   <Suspense suspensible>
-    <div v-if="snippetContent" class="snippet">
-      <MDC class="markdown-content" :value="snippetContent" />
+    <div v-if="snippetContent?.content" class="snippet">
+      <MDC class="markdown-content" :value="snippetContent.content" />
     </div>
   </Suspense>
 </template>

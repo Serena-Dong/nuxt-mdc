@@ -15,20 +15,19 @@ isRecursiveSnippet
 
 const { data: snippetContent } = isRecursiveSnippet
   ? { data: ref(null) }
-  : await useFetch(`/api/getSnippet/${props.name}`, {
+  : await useFetch(`/api/snippets/${props.name}`, {
       method: "GET",
       query: {
         inline: true,
       },
     });
-// /api/getSnippet/banana?inline=true
 </script>
 <template>
   <Suspense suspensible>
     <MDC
-      v-if="snippetContent"
+      v-if="snippetContent?.content"
       class="markdown-content snippet-inline"
-      :value="snippetContent"
+      :value="snippetContent.content"
       unwrap="p"
       tag="span"
     />
