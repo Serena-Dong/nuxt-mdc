@@ -1,4 +1,4 @@
-<!-- # Heading Level 1
+# Heading Level 1
 
 ## Heading Level 2
 
@@ -68,14 +68,8 @@ This is a Button
  <br />
 
 ::snippet{name='article'}
-:: -->
+::
 
 ```
 
 ```
-
-A simple :snippet-inline{name="banana"}
-
-Paragraph a :snippet-inline{name="banana"}
-
-Paragraph b :snippet-inline{name="banana"}
