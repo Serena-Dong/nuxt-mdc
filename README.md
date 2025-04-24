@@ -189,3 +189,16 @@ Features:
 - code with syntx highlighting (rehype plugins/Shiki etc)
 - snippets
 ```
+
+rehype
+Aggiungere un prefisso di localizzazione ai link interni.
+Esempio: [link](/posts/test) diventa <a href="/en-us/posts/test">link</a>
+
+remark
+Aggiungere un’estensione che trasformi la sintassi [lang=xx](parola) in <span lang="xx">parola</span>
+
+rehype
+Modificare la resa del testo in grassetto **parola** per convertirlo in testo sottolineato <u>parola</u> invece di <strong>parola</strong>
+
+remark
+Gestire correttamente le liste annidate nel Markdown, assicurandoti che siano convertite in strutture HTML annidate valide.

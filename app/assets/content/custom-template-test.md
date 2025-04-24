@@ -39,3 +39,5 @@ Fusce euismod, dolor vel tincidunt aliquam, nunc nisl tincidunt nisl, vel tincid
 Maecenas consectetur, dolor vel tincidunt aliquam, nunc nisl tincidunt nisl, vel tincidunt nisl nisl vel nisl. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec vel sapien vel nisl tincidunt aliquam. Curabitur vitae fermentum nisl, eget ultricies nunc. Sed eget nisl vel nisl tincidunt aliquam.
 
 ::
+
+[lang=fr](bonjour)

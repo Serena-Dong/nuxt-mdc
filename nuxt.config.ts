@@ -74,6 +74,11 @@ export default defineNuxtConfig({
         img: "CustomProseImg",
       },
     },
+    remarkPlugins: {},
+    rehypePlugins: {
+      options: {},
+      plugins: {},
+    },
   },
   components: {
     dirs: [
