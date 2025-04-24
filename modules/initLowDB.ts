@@ -3,7 +3,8 @@ import { $fetch } from "ofetch";
 import { join, resolve } from "path";
 import type { BlogCardProps } from "~/components/Molecules/BlogCard.props";
 import { defineNuxtModule, createResolver, addServerHandler } from "@nuxt/kit";
-import { JSONFilePreset } from "lowdb/node";
+import { JSONFile, JSONFilePreset } from "lowdb/node";
+import { Low } from "lowdb";
 
 type DBPost = {
   postInfo: BlogCardProps;
@@ -16,7 +17,7 @@ type DBSnippet = {
   content: string;
 };
 
-type JsonDBData = {
+export type JsonDBData = {
   posts: DBPost[];
   snippets: DBSnippet[];
   inlineSnippets: DBSnippet[];
@@ -28,16 +29,15 @@ export default defineNuxtModule({
 
     const defaultData = await getDefaultData();
 
-    console.log("Default Data:", defaultData);
+    // Initialize adapter
+    const dbFilePath = resolve("./db.json");
+    const adapter = new JSONFile<JsonDBData>(dbFilePath);
+
+    console.log("Adapter initialized with path:", dbFilePath);
 
     // Initialize database
-    const db = await JSONFilePreset<JsonDBData>("db.json", defaultData);
-
-    // Add server API endpoint to access DB
-    addServerHandler({
-      route: "/api/db",
-      handler: resolver.resolve("./runtime/server/api/db"),
-    });
+    const db = new Low<JsonDBData>(adapter, defaultData);
+    await db.write();
   },
 });
 
