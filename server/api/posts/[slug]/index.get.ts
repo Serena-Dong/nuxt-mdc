@@ -3,6 +3,14 @@ export default defineEventHandler(async (event) => {
     const { db } = getDB();
     const { slug } = getRouterParams(event);
 
+    if (!slug) {
+      throw createError({
+        statusCode: 400,
+        message: "Bad Request",
+        data: "Post slug parameter is required",
+      });
+    }
+
     await db.read();
 
     const foundPost = db.data?.posts.find(
@@ -21,9 +29,9 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     if (error instanceof Error) {
       throw createError({
-        statusCode: error.statusCode,
-        statusMessage: "Internal Server Error during /api/posts/ GET",
-        data: error.message,
+        statusCode: (error as any).statusCode ?? 500,
+        statusMessage: "Internal Server Error during /api/posts/[slug] GET",
+        data: (error as any).data ?? error.message,
       });
     } else
       throw createError({
