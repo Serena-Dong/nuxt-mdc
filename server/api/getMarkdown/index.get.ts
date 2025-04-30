@@ -35,7 +35,6 @@ export default defineEventHandler(async (event) => {
           postNumber: 0,
           slug,
           title,
-          description: contentPreview,
           date: stats.birthtime.toISOString(), // File creation date
         };
 
