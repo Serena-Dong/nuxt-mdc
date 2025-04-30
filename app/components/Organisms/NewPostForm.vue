@@ -22,14 +22,12 @@ const submitCleanup = (formBody: FormValues) => {
   }
 
   const validatedFormBody = {
-    ...formBody,
+    title: formBody.title.trim(),
+    content: formBody.content.trim(),
     slug: formBody.slug.length ? formBody.slug : kebabify(formBody.title),
   };
 
-  formBody.title = formBody.title.trim();
-  formBody.slug = kebabify(formBody.slug.trim());
-  formBody.content = formBody.content.trim();
-  emit("submit", formBody);
+  emit("submit", validatedFormBody);
 };
 </script>
 
@@ -92,7 +90,12 @@ const submitCleanup = (formBody: FormValues) => {
         </div>
       </div>
     </div>
-    <button type="submit" class="cursor-poninter self-end">Submit</button>
+    <button
+      type="submit"
+      class="bg-black text-white cursor-pointer self-end py-2 px-4 hover:bg-gray-800"
+    >
+      Submit
+    </button>
   </form>
 </template>
 

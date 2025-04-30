@@ -33,6 +33,7 @@ const writeNewPost = async (submitPayload: FormValues) => {
       //     status: "success",
       //     content: "Post created successfully!",
       //   };
+      navigateTo("/");
     })
     .catch((error) => {
       console.error("Error creating post:", error);
