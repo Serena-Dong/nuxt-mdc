@@ -2,8 +2,8 @@
 import type { DBSnippet } from "~~/modules/initLowDB";
 
 defineProps<{
-  snippets: DBSnippet[];
-  inlineSnippets: DBSnippet[];
+  snippets: DBSnippet[] | undefined;
+  inlineSnippets: DBSnippet[] | undefined;
 }>();
 </script>
 
