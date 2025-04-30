@@ -1,11 +1,25 @@
 import { readBody } from "h3";
-import { promises as fs } from "fs";
 import type { DBPost } from "~~/modules/initLowDB";
+import * as v from "valibot";
+
+const validateBodyProperty = (property: string) =>
+  v.pipe(
+    v.string(`'${property}' must be a string`),
+    v.nonEmpty(`'${property}' cannot be empty`)
+  );
+
+const newPostBodySchema = v.object({
+  title: validateBodyProperty("title"),
+  slug: validateBodyProperty("slug"),
+  content: v.string(),
+});
 
 export default defineEventHandler(async (event) => {
   try {
     // Parse the request body as FormValues
-    const body = await readBody(event);
+    const body = await readValidatedBody(event, (body) =>
+      v.parse(newPostBodySchema, body)
+    );
 
     const { db } = getDB();
 
