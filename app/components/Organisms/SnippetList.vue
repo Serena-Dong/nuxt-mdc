@@ -24,11 +24,9 @@ defineProps<{
           <div
             class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
           >
-            <MDC
-              tag="p"
-              class="markdown-content p-4"
-              :value="`::snippet{name='${snippet.name}'}\n::`"
-            />
+            <p class="markdown-content-p-4">
+              <Snippet :name="snippet.name" />
+            </p>
           </div>
         </details>
       </div>
@@ -42,11 +40,12 @@ defineProps<{
       >
         <p class="text-bold">{{ inlineSnippet.name }}</p>
         <div class="pointer-events-none text-gray-400">
-          <MDC
-            tag="p"
-            class="markdown-content"
-            :value="`:snippet-inline{name='${inlineSnippet.name}'}`"
-          />
+          <p class="markdown-content">
+            <SnippetInline
+              class="markdown-content"
+              :name="inlineSnippet.name"
+            />
+          </p>
         </div>
       </div>
     </template>
