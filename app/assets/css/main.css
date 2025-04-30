@@ -63,4 +63,8 @@
   ol li {
     list-style: decimal;
   }
+
+  button {
+    @apply cursor-pointer;
+  }
 }
