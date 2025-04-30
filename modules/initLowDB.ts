@@ -10,7 +10,7 @@ export type DBPost = {
   content: string;
 };
 
-type DBSnippet = {
+export type DBSnippet = {
   id: string;
   name: string;
   content: string;

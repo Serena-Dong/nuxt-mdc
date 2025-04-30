@@ -63,14 +63,14 @@ const submitCleanup = (formBody: FormValues) => {
             <ul class="list-disc pl-4">
               <li class="text-sm text-gray-500">
                 <b>Inline:</b>
-                <code class="block"
-                  >:snippet-inline{name="nome_dello_snippet"}</code
-                >
+                <code class="block">
+                  :snippet-inline{name='nome_dello_snippet'}
+                </code>
               </li>
               <li class="text-sm text-gray-500">
                 <b>Block:</b>
                 <code class="block">
-                  ::snippet{name="nome_dello_snippet"}<br />
+                  ::snippet{name='nome_dello_snippet'}<br />
                   ::
                 </code>
               </li>

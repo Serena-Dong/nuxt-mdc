@@ -2,6 +2,11 @@
 import type { PopupProps } from "~/components/Molecules/Popup.props";
 import type { FormValues } from "~/components/Organisms/NewPostForm.props";
 
+//SNIPPET LIST
+const { data: snippets } = await useFetch("/api/snippets");
+const { data: inlineSnippets } = await useFetch("/api/snippets?inline=true");
+
+// NEW POST FORM
 const newPostData = ref<FormValues>({
   title: "",
   slug: "",
@@ -48,14 +53,19 @@ const writeNewPost = async (submitPayload: FormValues) => {
 
 <template>
   <div class="min-h-full p-4 pt-0 md:p-8 md:!pt-0">
-    <section class="new-post-form flex flex-col gap-3">
+    <section id="new-post-form" class="flex flex-col gap-3">
       <h2>Crea un nuovo post</h2>
       <OrganismsNewPostForm
         :new-post-form="newPostData"
         @submit="writeNewPost"
       />
     </section>
-    <section class="new-snippet-form inline"></section>
-    <!-- <MoleculesPopup v-bind="feedbackPopup" v-model:visible="showPopup" /> -->
+    <section id="new-snippet-form" class="inline"></section>
+    <section id="snippet-list">
+      <OrganismsSnippetList
+        :snippets="snippets"
+        :inline-snippets="inlineSnippets"
+      />
+    </section>
   </div>
 </template>
