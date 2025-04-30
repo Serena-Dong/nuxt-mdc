@@ -14,7 +14,7 @@ defineProps<{
       <h3 class="mt-4">Block snippets</h3>
       <div
         v-for="snippet in snippets"
-        :key="snippet.id"
+        :key="snippet.name"
         class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
       >
         <details>
@@ -27,7 +27,7 @@ defineProps<{
             <MDC
               tag="p"
               class="markdown-content p-4"
-              :value="snippet.content"
+              :value="`::snippet{name='${snippet.name}'}\n::`"
             />
           </div>
         </details>
@@ -37,7 +37,7 @@ defineProps<{
       <h3 class="mt-4">Inline snippets</h3>
       <div
         v-for="inlineSnippet in inlineSnippets"
-        :key="inlineSnippet.id"
+        :key="inlineSnippet.name"
         class="flex justify-between border-b-2 border-gray-400 py-2"
       >
         <p class="text-bold">{{ inlineSnippet.name }}</p>
@@ -45,7 +45,7 @@ defineProps<{
           <MDC
             tag="p"
             class="markdown-content"
-            :value="inlineSnippet.content"
+            :value="`:snippet-inline{name='${inlineSnippet.name}'}`"
           />
         </div>
       </div>
