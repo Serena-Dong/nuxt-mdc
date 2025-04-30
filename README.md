@@ -1,6 +1,6 @@
 # Nuxt MDC BLOG
 
-## 1. Blog Minimal con Prose Components
+<!-- ## 1. Blog Minimal con Prose Components
 
 **Obiettivo:** Creare un blog semplice utilizzando Prose Components per visualizzare articoli.
 
@@ -28,11 +28,11 @@
 
 4. **Testing e debug:**
    - Verifica la visualizzazione degli articoli.
-   - Risolvi eventuali problemi di rendering.
+   - Risolvi eventuali problemi di rendering. -->
 
 ---
 
-## 2. Documentazione Interattiva per il Codice
+<!-- ## 2. Documentazione Interattiva per il Codice
 
 **Obiettivo:** Mostrare ed evidenziare il codice sorgente in modo interattivo.
 
@@ -59,11 +59,11 @@
 
 4. **Verifica e miglioramenti:**
    - Testa la documentazione interattiva.
-   - Aggiungi componenti di avviso per feedback.
+   - Aggiungi componenti di avviso per feedback. -->
 
 ---
 
-## 3. Pagina di Snippet Riutilizzabili
+<!-- ## 3. Pagina di Snippet Riutilizzabili
 
 **Obiettivo:** Aggregare contenuti utilizzando snippet riutilizzabili.
 
@@ -95,12 +95,11 @@ link homepage -> [Homepage](/)
 
 <p>Per tornare alla home page puoi usare il link :snippet-inline{name="link-homepage"}</p>
 
-```vue
-
+```vue -->
 
 ---
 
-## 4. Demo di Componenti Asincroni
+<!-- ## 4. Demo di Componenti Asincroni
 
 **Obiettivo:** Implementare componenti asincroni in una demo funzionale.
 
@@ -129,7 +128,7 @@ link homepage -> [Homepage](/)
 
 #### Esempio di componente asincrono:
 
-   Un banner che contiene dei metodi di spedizione, che vengono fetchati lato client (aka al mounted) -> credo si possa simulare settando l'option `server` a false (https://nuxt.com/docs/api/composables/use-fetch#params)
+Un banner che contiene dei metodi di spedizione, che vengono fetchati lato client (aka al mounted) -> credo si possa simulare settando l'option `server` a false (https://nuxt.com/docs/api/composables/use-fetch#params) -->
 
 ---
 
@@ -146,8 +145,8 @@ You can also use `rehype` plugins if you want to modify how the AST is converted
 
 - add a function that localizes internal paths in markdown (i.e.: [link](/posts/test-markdown-text) => <a href="/en-us/posts/test-markdown-text">link</a>) -> i.e. with localized routes like with nuxt-i18n-micro
 - add an extension to convert [lang=xx](word) to <span lang="xx">word</span>
-- add an extension to convert **word** to <u>word</u>
-- handle nested lists
+- add an extension to convert \_\_word\_\_ to <u>word</u>
+- handle nested lists -> lo fa nuxt mdc di default
 
 ---
 
@@ -188,4 +187,7 @@ Features:
 
 - code with syntx highlighting (rehype plugins/Shiki etc)
 - snippets
+
+```
+
 ```
