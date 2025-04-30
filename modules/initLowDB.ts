@@ -1,12 +1,11 @@
 import { readdirSync, readFileSync, statSync } from "fs";
-import { $fetch } from "ofetch";
 import { join, resolve } from "path";
 import type { BlogCardProps } from "~/components/Molecules/BlogCard.props";
 import { defineNuxtModule, createResolver, addServerHandler } from "@nuxt/kit";
-import { JSONFile, JSONFilePreset } from "lowdb/node";
+import { JSONFile } from "lowdb/node";
 import { Low } from "lowdb";
 
-type DBPost = {
+export type DBPost = {
   postInfo: BlogCardProps;
   content: string;
 };
@@ -25,8 +24,6 @@ export type JsonDBData = {
 
 export default defineNuxtModule({
   setup: async (options, nuxt) => {
-    const resolver = createResolver(import.meta.url);
-
     const defaultData = await getDefaultData();
 
     // Initialize adapter
