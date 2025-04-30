@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const route = useRoute();
+</script>
 <template>
   <header>
     <div class="p-4 md:px-8">
@@ -11,7 +13,9 @@
         >
           Skip to content
         </a>
-        <span class="uppercase">Nuxt-mdc</span>
+        <NuxtLink to="/">
+          <h1 class="uppercase">Nuxt-mdc</h1>
+        </NuxtLink>
 
         <ul class="flex text-gray-500 gap-2">
           <li class="list-none">
@@ -19,7 +23,15 @@
               class="flex items-center gap-2"
               to="https://nuxt.com/modules/mdc"
               target="_blank"
-              >Documentation <icon name="line-md:external-link"></icon>
+            >
+              <span>Documentation</span>
+              <icon name="line-md:external-link"></icon>
+            </NuxtLink>
+          </li>
+          <li class="list-none" v-if="route.path !== '/new-post'">
+            <NuxtLink class="flex items-center gap-2" to="/new-post">
+              <span>Crea nuovo post</span>
+              <icon name="line-md:add-icon"></icon>
             </NuxtLink>
           </li>
         </ul>
