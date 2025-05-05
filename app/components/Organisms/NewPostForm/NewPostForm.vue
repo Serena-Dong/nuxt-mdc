@@ -56,34 +56,6 @@ const submitCleanup = (formBody: FormValues) => {
         <label for="new-post__content" class="text-lg font-semibold">
           Content
         </label>
-        <p>
-          <i>
-            <b>Tip:</b> You can use the following shortcuts to insert snippets
-            and conmponents:
-            <ul class="list-disc pl-4">
-              <li class="text-sm text-gray-500">
-                <b>Inline:</b>
-                <span class="block">
-                  :snippet-inline{name='nome_dello_snippet'}
-                </span>
-              </li>
-              <li class="text-sm text-gray-500">
-                <b>Block:</b>
-                <span class="block">
-                  ::snippet{name='nome_dello_snippet'}<br />
-                  ::
-                </span>
-              </li>
-              <li class="text-sm text-gray-500">
-                <b>CustomComponent:</b>
-                <span class="block">
-                  ::component-name-in-kebab-case<br />
-                  ::
-                </span>
-              </li>
-            </ul>
-          </i>
-        </p>
         <textarea
           id="new-post__content"
           v-model="formValues.content"
@@ -96,8 +68,36 @@ const submitCleanup = (formBody: FormValues) => {
             }
           "
         />
+        <p>
+          <i>
+            <b>Tip:</b> You can use the following shortcuts to insert snippets
+            and conmponents:
+          </i>
+        </p>
+        <ul class="list-disc pl-4">
+          <li class="text-sm text-gray-500">
+            <b>Inline:</b>
+            <span class="block">
+              :snippet-inline{name='nome_dello_snippet'}
+            </span>
+          </li>
+          <li class="text-sm text-gray-500">
+            <b>Block:</b>
+            <span class="block">
+              ::snippet{name='nome_dello_snippet'}<br />
+              ::
+            </span>
+          </li>
+          <li class="text-sm text-gray-500">
+            <b>CustomComponent:</b>
+            <span class="block">
+              ::component-name-in-kebab-case<br />
+              ::
+            </span>
+          </li>
+        </ul>
       </div>
-      <div class="col-span-1 flex flex-col justify-between">
+      <div class="col-span-1 flex flex-col">
         <label for="new-post__content__preview" class="text-lg font-semibold">
           Preview
         </label>
