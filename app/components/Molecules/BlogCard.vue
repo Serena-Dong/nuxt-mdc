@@ -42,7 +42,7 @@ const parsedDate = computed(() => new Date(props.date));
           class="text-sm text-right hidden items-center gap-2 md:flex cursor-pointer"
           @click.prevent="$emit('deletePost', slug)"
         >
-          Delete post<icon name="line-md:arrow-right"></icon>
+          Delete<icon name="line-md:document-delete"></icon>
         </button>
       </div>
     </NuxtLink>

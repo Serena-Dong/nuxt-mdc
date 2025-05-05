@@ -31,7 +31,7 @@ const route = useRoute();
           <li class="list-none" v-if="route.path !== '/new-post'">
             <NuxtLink class="flex items-center gap-2" to="/new-post">
               <span>Crea nuovo post</span>
-              <icon name="line-md:add-icon"></icon>
+              <icon name="line-md:file-document-plus"></icon>
             </NuxtLink>
           </li>
         </ul>
