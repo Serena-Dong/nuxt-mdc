@@ -35,24 +35,31 @@ const parseMarkdownForPreview = (content: string) => {};
 
 <template>
   <form class="flex flex-col gap-3" @submit.prevent="submitCleanup(formValues)">
-    <label for="new-post__title" class="text-lg font-semibold">Title</label>
-    <input
-      id="new-post__title"
-      type="text"
-      v-model="formValues.title"
-      placeholder="Title"
-      class="border border-gray-300 rounded p-2 mb-4 w-full"
-    />
-    <label for="new-post__slug" class="text-lg font-semibold">
-      Slug <i>(N.B.: è permesso solo il kebab case)</i>
-    </label>
-    <input
-      id="new-post__slug"
-      type="text"
-      v-model="formValues.slug"
-      :placeholder="slugPlaceholderValue"
-      class="border border-gray-300 rounded p-2 mb-4 w-full"
-    />
+    <div class="flex gap-3">
+      <div class="title flex-1/2">
+        <label for="new-post__title" class="text-lg font-semibold">Title</label>
+        <input
+          id="new-post__title"
+          type="text"
+          v-model="formValues.title"
+          placeholder="Title"
+          class="border border-gray-300 rounded p-2 mb-4 w-full"
+        />
+      </div>
+      <div class="slug flex-1/2">
+        <label for="new-post__slug" class="text-lg font-semibold">
+          Slug
+          <span class="text-xs">(kebab case)</span>
+        </label>
+        <input
+          id="new-post__slug"
+          type="text"
+          v-model="formValues.slug"
+          :placeholder="slugPlaceholderValue"
+          class="border border-gray-300 rounded p-2 mb-4 w-full"
+        />
+      </div>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="col-span-1">
         <label for="new-post__content" class="text-lg font-semibold">
@@ -70,34 +77,36 @@ const parseMarkdownForPreview = (content: string) => {};
             }
           "
         />
-        <p>
-          <i>
-            <b>Tip:</b> You can use the following shortcuts to insert snippets
-            and conmponents:
-          </i>
-        </p>
-        <ul class="list-disc pl-4">
-          <li class="text-sm text-gray-500">
-            <b>Inline:</b>
-            <span class="block">
-              :snippet-inline{name='nome_dello_snippet'}
-            </span>
-          </li>
-          <li class="text-sm text-gray-500">
-            <b>Block:</b>
-            <span class="block">
-              ::snippet{name='nome_dello_snippet'}<br />
-              ::
-            </span>
-          </li>
-          <li class="text-sm text-gray-500">
-            <b>CustomComponent:</b>
-            <span class="block">
-              ::component-name-in-kebab-case<br />
-              ::
-            </span>
-          </li>
-        </ul>
+        <div class="text-xs flex flex-col gap-3">
+          <p>
+            <i>
+              <b>Tip:</b> You can use the following shortcuts to insert snippets
+              and components:
+            </i>
+          </p>
+          <ul class="list-disc pl-4 text-gray-500">
+            <li>
+              <b>Inline:</b>
+              <span class="block">
+                :snippet-inline{name='nome_dello_snippet'}
+              </span>
+            </li>
+            <li>
+              <b>Block:</b>
+              <span class="block">
+                ::snippet{name='nome_dello_snippet'}<br />
+                ::
+              </span>
+            </li>
+            <li c>
+              <b>CustomComponent:</b>
+              <span class="block">
+                ::component-name-in-kebab-case<br />
+                ::
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="col-span-1 flex flex-col">
         <label for="new-post__content__preview" class="text-lg font-semibold">
@@ -124,7 +133,7 @@ const parseMarkdownForPreview = (content: string) => {};
       type="submit"
       class="bg-black text-white cursor-pointer self-end py-2 px-4 hover:bg-gray-800"
     >
-      Submit
+      Create post
     </button>
   </form>
 </template>
