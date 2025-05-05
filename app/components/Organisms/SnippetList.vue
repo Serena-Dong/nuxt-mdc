@@ -9,9 +9,7 @@ defineProps<{
 
 <template>
   <div class="flex flex-col gap-3">
-    <h2 class="mt-8">Snippet List</h2>
     <template v-if="snippets?.length">
-      <h3 class="mt-4">Block snippets</h3>
       <div
         v-for="snippet in snippets"
         :key="snippet.name"
@@ -36,7 +34,7 @@ defineProps<{
       <div
         v-for="inlineSnippet in inlineSnippets"
         :key="inlineSnippet.name"
-        class="flex justify-between border-b-2 border-gray-400 py-2"
+        class="flex justify-between border-b-2 border-gray-400 py-2 gap-2"
       >
         <p class="text-bold">{{ inlineSnippet.name }}</p>
         <div class="pointer-events-none text-gray-400">
