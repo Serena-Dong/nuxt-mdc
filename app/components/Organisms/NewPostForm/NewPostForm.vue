@@ -107,8 +107,9 @@ const submitCleanup = (formBody: FormValues) => {
           class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll"
         >
           <MDC
-            class="markdown-content pointer-events-none"
             v-if="formValues.content.length"
+            :key="formValues.content"
+            class="markdown-content pointer-events-none"
             :value="formValues.content"
           />
           <p v-else class="text-gray-500 italic">
