@@ -29,6 +29,8 @@ const submitCleanup = (formBody: FormValues) => {
 
   emit("submit", validatedFormBody);
 };
+
+const parseMarkdownForPreview = (content: string) => {};
 </script>
 
 <template>
