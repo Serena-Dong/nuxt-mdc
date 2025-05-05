@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PopupProps } from "~/components/Molecules/Popup.props";
-import type { FormValues } from "~/components/Organisms/NewPostForm.props";
+import type { FormValues } from "~/components/Organisms/NewPostForm/NewPostForm.props";
 
 //SNIPPET LIST
 const { data: snippets } = await useFetch("/api/snippets");
