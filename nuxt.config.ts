@@ -55,9 +55,10 @@ export default defineNuxtConfig({
     highlight: {
       // shiki is the default highlighter, you can find more info on supported themes and languages in shiki documentation
       // @see https://shiki.style/guide/
-      wrapperStyle: "rounded-lg overflow-hidden bg-gray-900",
+      wrapperStyle:
+        "overflow: hidden; border-radius: var(--radius-md); background-color: var(--color-gray-300); padding: calc(var(--spacing) * 4);",
       theme: "vitesse-light",
-      langs: [...langs, "yaml"], // extend the default languages with yaml and md
+      //langs: [...langs, "yaml", "md", "js"], // extend the default languages with yaml and md --> TEMPORARILY COMMENTED
     },
     components: {
       map: {
