@@ -18,6 +18,7 @@ const slugPlaceholderValue = computed(() => {
 
 const submitCleanup = (formBody: FormValues) => {
   if (!formBody.title.length || !formBody.content.length) {
+    alert("Missing post title or content");
     return;
   }
 
@@ -30,7 +31,18 @@ const submitCleanup = (formBody: FormValues) => {
   emit("submit", validatedFormBody);
 };
 
-const parseMarkdownForPreview = (content: string) => {};
+const addNewLineOnEnter = (e: KeyboardEvent) => {
+  const target = e.target as HTMLTextAreaElement;
+
+  let cursorPosition = target.selectionEnd;
+
+  target.value =
+    target.value.substring(0, cursorPosition) +
+    "\n" +
+    target.value.substring(cursorPosition);
+
+  target.selectionEnd = cursorPosition + 1;
+};
 </script>
 
 <template>
@@ -70,12 +82,7 @@ const parseMarkdownForPreview = (content: string) => {};
           v-model="formValues.content"
           placeholder="Write your post content in markdown"
           class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll align-text-top whitespace-pre-wrap"
-          @keydown.enter.prevent="
-            (e) => {
-              console.log(e);
-              e.target.value += '\n';
-            }
-          "
+          @keydown.enter.prevent="addNewLineOnEnter"
         />
         <div class="text-xs flex flex-col gap-3">
           <p>
