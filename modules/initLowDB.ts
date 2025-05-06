@@ -59,7 +59,19 @@ const getDefaultPosts = async (): Promise<DBPost[]> => {
 
     const articles = files
       .map((file, index) => {
-        const slug = file.replace(".md", "");
+        const [orderNumber, slug, _extension] = file.split(".");
+
+        console.log({
+          orderNumber,
+          slug,
+          _extension,
+        });
+
+        if (!slug || !orderNumber)
+          throw new Error(
+            `Invalid file name format: ${file}\n Expected format: <orderNumber>.<slug>.md`
+          );
+
         const words = slug.split("-");
         // Capitalize only the first word
         const title = words
@@ -74,7 +86,7 @@ const getDefaultPosts = async (): Promise<DBPost[]> => {
         const stats = statSync(filePath);
 
         const articleInfo: BlogCardProps = {
-          postNumber: 0,
+          postNumber: Number(orderNumber),
           slug,
           title,
           date: stats.birthtime.toISOString(), // File creation date
@@ -103,18 +115,9 @@ const getDefaultPosts = async (): Promise<DBPost[]> => {
       })
       .filter((article) => article !== null) as DBPost[];
 
-    // Sort articles by date (newest first) -> the dates need to be converted from ISO to Date objects
-    articles.sort(
-      (a, b) =>
-        new Date(b.postInfo.date).getTime() -
-        new Date(a.postInfo.date).getTime()
-    );
-
-    // Assign post numbers based on the sorted order
-    articles.map((article, index, articlesArray) => {
-      article.postInfo.postNumber = articlesArray.length - index; // Assign post number
-      return article;
-    });
+    // Sort articles by post number in descending order
+    // Article added at runtime will be added chronologically
+    articles.sort((a, b) => a.postInfo.postNumber - b.postInfo.postNumber;);
 
     return articles;
   } catch (error) {
