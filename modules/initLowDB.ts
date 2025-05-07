@@ -117,7 +117,7 @@ const getDefaultPosts = async (): Promise<DBPost[]> => {
 
     // Sort articles by post number in descending order
     // Article added at runtime will be added chronologically
-    articles.sort((a, b) => a.postInfo.postNumber - b.postInfo.postNumber;);
+    articles.sort((a, b) => a.postInfo.postNumber - b.postInfo.postNumber);
 
     return articles;
   } catch (error) {
