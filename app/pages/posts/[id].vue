@@ -7,6 +7,18 @@ const { data: articleContent } = await useFetch(
 
 const title = route.params.id;
 const cleanTitle = typeof title === "string" ? title.replace(/-/g, " ") : "";
+
+const preprocessMd = (content: string) => {
+  return content?.replace(
+    /(?<!\\)(?<!`)(?:```[\s\S]*?```|`[^`]*`|__(.*?)__)/g,
+    (match, word) => {
+      if (match.startsWith("`") || match.startsWith("```")) {
+        return match; // Ignore content inside backticks
+      }
+      return word ? `<u>${word}</u>` : match;
+    }
+  );
+};
 </script>
 <template>
   <div class="min-h-full p-4 md:p-8 pt-0 md:pt-0 flex flex-col gap-4">
@@ -30,7 +42,7 @@ const cleanTitle = typeof title === "string" ? title.replace(/-/g, " ") : "";
           v-if="articleContent?.content"
           class="min-h-full mx-auto max-w-200 markdown-content"
           tag="article"
-          :value="articleContent.content"
+          :value="preprocessMd(articleContent?.content)"
         />
         <div v-else>No content</div>
       </div>
