@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import type { PopupProps } from "~/components/Molecules/Popup.props";
-import type { FormValues } from "~/components/Organisms/NewPostForm/NewPostForm.props";
+import type { FormValues } from "~/components/Organisms/FormValues";
 import { ref } from "vue";
 //SNIPPET LIST
 const { data: snippets } = await useFetch("/api/snippets");
@@ -10,6 +10,12 @@ const { data: inlineSnippets } = await useFetch("/api/snippets?inline=true");
 const newPostData = ref<FormValues>({
   title: "",
   slug: "",
+  content: "",
+});
+// New Snippet Form
+const newSnippetForm = ref<FormValues>({
+  name: "",
+  inline: false,
   content: "",
 });
 
@@ -52,9 +58,13 @@ const writeNewPost = async (submitPayload: FormValues) => {
 
 // Sidebar Function
 const showSnippetList = ref(false);
+const showCreateSnippet = ref(false);
 
 const toggleSnippetList = () => {
   showSnippetList.value = !showSnippetList.value;
+};
+const toggleCreateSnippet = () => {
+  showCreateSnippet.value = !showCreateSnippet.value;
 };
 </script>
 
@@ -63,7 +73,7 @@ const toggleSnippetList = () => {
     <!-- Main content area -->
     <section id="new-post-form" class="flex flex-col gap-6">
       <div class="flex justify-between items-center">
-        <h2 class="uppercase">Crea un nuovo post</h2>
+        <h2 class="md:text-2xl text-lg uppercase">Create a new post</h2>
         <button
           class="bg-black text-white cursor-pointer text-sm self-end py-2 px-4 hover:bg-gray-800 uppercase"
           @click="toggleSnippetList"
@@ -81,15 +91,23 @@ const toggleSnippetList = () => {
   </div>
   <!-- Snippet list side page -->
   <div v-if="showSnippetList" class="side-page w-full md:w-1/2">
-    <div class="flex justify-between items-center mb-4">
+    <div class="flex justify-between items-center mb-6">
       <h2 class="uppercase">Snippet List</h2>
-
-      <button
-        class="bg-black text-white cursor-pointer text-sm self-end py-2 px-4 hover:bg-gray-800"
-        @click="toggleSnippetList"
-      >
-        Close
-      </button>
+      <div class="action-buttons flex gap-2">
+        <button
+          class="bg-black text-white cursor-pointer text-sm self-end py-2 px-4 hover:bg-gray-800"
+          @click="toggleCreateSnippet"
+        >
+          <span class="md:hidden">Add </span>
+          <span class="hidden md:block">Add a Snippet</span>
+        </button>
+        <button
+          class="bg-black text-white cursor-pointer text-sm self-end py-2 px-4 hover:bg-gray-800"
+          @click="toggleSnippetList"
+        >
+          Close
+        </button>
+      </div>
     </div>
 
     <OrganismsSnippetList
@@ -97,6 +115,21 @@ const toggleSnippetList = () => {
       :snippets="snippets"
       :inline-snippets="inlineSnippets"
     />
+  </div>
+  <div v-if="showCreateSnippet" class="side-page w-full md:w-1/2">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="uppercase">Add a Snippet</h2>
+      <div class="action-buttons flex gap-2">
+        <button
+          class="bg-black text-white cursor-pointer text-sm self-end py-2 px-4 hover:bg-gray-800"
+          @click="toggleCreateSnippet"
+        >
+          Go back
+        </button>
+      </div>
+    </div>
+
+    <OrganismsNewSnippetForm class="overflow-y-auto h-full" />
   </div>
 </template>
 <style scoped>
