@@ -65,6 +65,10 @@
     list-style: decimal;
   }
 
+  li:has(details) {
+    @apply list-none;
+  }
+
   button {
     @apply cursor-pointer;
   }

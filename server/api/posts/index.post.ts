@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     };
 
     // Push post
-    db.update(({ posts }) => posts.push(newPost));
+    db.update(({ posts }) => posts.unshift(newPost));
 
     // Return the created post with a 201 status code
     setResponseStatus(event, 201);

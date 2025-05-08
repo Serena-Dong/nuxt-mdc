@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-import langs from "@shikijs/langs/javascript";
+import { resolve } from "path";
 
 export default defineNuxtConfig({
   app: {
@@ -52,12 +52,27 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   mdc: {
+    // Add custom plugins to the markdown processor
+    remarkPlugins: {
+      /**
+       * To add plugins you need to add the plugin name as key and an object containing:
+       * - the plugin src (local or remote)
+       * - the plugin options (optional)
+       *
+       * This will be converted to a default import @see https://github.com/nuxt-modules/mdc/blob/58e5ef0d820d9d33f057cb9f50b4aa0d26fb6ca8/src/templates/mdc-imports.ts#L35
+       */
+      remarkCustomUnderline: {
+        src: resolve("./markdown-plugins/remarkCustomUnderline"),
+      },
+      // Add more plugins here
+    },
     highlight: {
       // shiki is the default highlighter, you can find more info on supported themes and languages in shiki documentation
       // @see https://shiki.style/guide/
-      wrapperStyle: "rounded-lg overflow-hidden bg-gray-900",
+      wrapperStyle:
+        "overflow: hidden; border-radius: var(--radius-md); background-color: var(--color-gray-300); padding: calc(var(--spacing) * 4);",
       theme: "vitesse-light",
-      langs: [...langs, "yaml"], // extend the default languages with yaml and md
+      //langs: [...langs, "yaml", "md", "js"], // extend the default languages with yaml and md --> TEMPORARILY COMMENTED
     },
     components: {
       map: {
