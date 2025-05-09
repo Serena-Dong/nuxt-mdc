@@ -1,12 +1,33 @@
 <script setup lang="ts">
 import type { DBSnippet } from "~~/modules/initLowDB";
 
+const { data: snippets, refresh: refreshSnippetList } = await useFetch(
+  "/api/snippets",
+  {
+    method: "GET",
+  }
+);
+
 defineProps<{
   snippets: DBSnippet[] | undefined;
   inlineSnippets: DBSnippet[] | undefined;
 }>();
-</script>
 
+const snippetToDelete = ref<string | null>(null);
+
+const deleteSnippet = async (snippetName: string) => {
+  snippetToDelete.value = snippetName;
+  try {
+    const response = await $fetch(`/api/snippets/${snippetToDelete.value}`, {
+      method: "DELETE",
+    });
+    console.log("Snippet deleted successfully:", response);
+    refreshSnippetList();
+  } catch (error) {
+    console.error("Error deleting snippet:", error);
+  }
+};
+</script>
 <template>
   <div class="flex flex-col gap-3">
     <template v-if="snippets?.length">
@@ -16,9 +37,18 @@ defineProps<{
         class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
       >
         <details>
-          <summary class="cursor-pointer font-bold hover:underline">
-            {{ snippet.name }}
+          <summary
+            class="cursor-pointer font-bold flex justify-between items-center"
+          >
+            <div class="name hover:underline">{{ snippet.name }}</div>
+            <button
+              @click="deleteSnippet(snippet.name)"
+              class="text-sm text-right items-center gap-2 cursor-pointer hover:underline"
+            >
+              Remove
+            </button>
           </summary>
+
           <div
             class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
           >
@@ -29,6 +59,7 @@ defineProps<{
         </details>
       </div>
     </template>
+
     <template v-if="inlineSnippets?.length">
       <h3 class="mt-4">Inline snippets</h3>
       <div
@@ -47,6 +78,7 @@ defineProps<{
         </div>
       </div>
     </template>
+
     <div
       v-if="!inlineSnippets?.length && !snippets?.length"
       class="py-5 text-center"
@@ -57,5 +89,3 @@ defineProps<{
     </div>
   </div>
 </template>
-
-<style scoped></style>
