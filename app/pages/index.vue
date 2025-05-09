@@ -6,7 +6,9 @@ const { data: posts, refresh: refreshPostList } = await useFetch("/api/posts", {
 });
 
 const confirmDeletePopup = ref(false);
+
 const postToDelete = ref<string | null>(null);
+
 const showConfirmDeletePopup = (slug: string) => {
   if (!slug?.length) return;
   confirmDeletePopup.value = true;
@@ -34,14 +36,14 @@ const deletePost = async () => {
       v-if="confirmDeletePopup"
       class="confirm-delete-popup absolute top-0 right-0 bg-white p-4 rounded shadow-md flex flex-col gap-4 z-50"
     >
-      <p>Vuoi davvero rimuovere questo post?</p>
+      <p>Do you confirm it?</p>
       <div class="flex justify-between">
         <button
           id="confirm-button"
           class="bg-gray-300 text-black px-4 py-2 hover:bg-gray-400"
           @click="deletePost"
         >
-          Sì
+          Yes
         </button>
         <button
           id="abort-button"

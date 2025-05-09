@@ -11,8 +11,8 @@ export type DBPost = {
 };
 
 export type DBSnippet = {
-  id: string;
   name: string;
+  inline: boolean;
   content: string;
 };
 
@@ -136,7 +136,6 @@ const getDefaultSnippets = (dirName: string): DBSnippet[] => {
   );
 
   return snippetNamesList.map((snippet, index) => ({
-    id: `${index + 1}`,
     name: snippet.replace(".md", ""),
     content: readFileSync(resolve(snippetDir, snippet), "utf-8"),
   }));

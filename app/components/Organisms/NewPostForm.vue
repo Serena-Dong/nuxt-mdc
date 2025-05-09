@@ -11,9 +11,7 @@ const formValues = defineModel<FormValues>("newPostForm", {
 const slugPlaceholderValue = computed(() => {
   const kebabCaseTitle = kebabify(formValues.value.title ?? "");
 
-  return formValues.value.title?.length
-    ? kebabCaseTitle
-    : "Inserisci uno slug univoco per il tuo post";
+  return formValues.value.title?.length ? kebabCaseTitle : "";
 });
 
 const submitCleanup = (formBody: FormValues) => {
@@ -49,13 +47,11 @@ const parseMarkdownForPreview = (content: string) => {};
         />
       </div>
       <div class="slug flex-1/2">
-        <label for="new-post__slug" class="text-lg font-semibold">
-          Slug
-          <span class="text-xs">(kebab case)</span>
-        </label>
+        <label for="new-post__slug" class="text-lg font-semibold"> Slug </label>
         <input
           id="new-post__slug"
           type="text"
+          disabled
           v-model="formValues.slug"
           :placeholder="slugPlaceholderValue"
           class="border border-gray-300 rounded p-2 mb-4 w-full"
@@ -127,9 +123,7 @@ const parseMarkdownForPreview = (content: string) => {};
             class="markdown-content pointer-events-none"
             :value="formValues.content ?? ''"
           />
-          <p v-else class="text-gray-500 italic">
-            Nessun contenuto da visualizzare
-          </p>
+          <p v-else class="text-gray-500 italic">No content to display</p>
         </div>
       </div>
     </div>
