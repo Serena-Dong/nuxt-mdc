@@ -15,10 +15,14 @@ defineProps<{
 
 const snippetToDelete = ref<string | null>(null);
 
-const deleteSnippet = async (snippetName: string) => {
+const deleteSnippet = async (snippetName: string, snippetInline: boolean) => {
   snippetToDelete.value = snippetName;
   try {
-    const response = await $fetch(`/api/snippets/${snippetToDelete.value}`, {
+    const url = snippetInline
+      ? `/api/snippets/${snippetToDelete.value}?inline=true`
+      : `/api/snippets/${snippetToDelete.value}`;
+
+    const response = await $fetch(url, {
       method: "DELETE",
     });
     console.log("Snippet deleted successfully:", response);
@@ -28,9 +32,11 @@ const deleteSnippet = async (snippetName: string) => {
   }
 };
 </script>
+
 <template>
   <div class="flex flex-col gap-3">
     <template v-if="snippets?.length">
+      <h3 class="mt-4">Snippets</h3>
       <div
         v-for="snippet in snippets"
         :key="snippet.name"
@@ -42,13 +48,12 @@ const deleteSnippet = async (snippetName: string) => {
           >
             <div class="name hover:underline">{{ snippet.name }}</div>
             <button
-              @click="deleteSnippet(snippet.name)"
+              @click="deleteSnippet(snippet.name, false)"
               class="text-sm text-right items-center gap-2 cursor-pointer hover:underline"
             >
               Remove
             </button>
           </summary>
-
           <div
             class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
           >
@@ -65,17 +70,28 @@ const deleteSnippet = async (snippetName: string) => {
       <div
         v-for="inlineSnippet in inlineSnippets"
         :key="inlineSnippet.name"
-        class="flex justify-between border-b-2 border-gray-400 py-2 gap-2"
+        class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
       >
-        <p class="text-bold">{{ inlineSnippet.name }}</p>
-        <div class="pointer-events-none text-gray-400">
-          <p class="markdown-content">
-            <SnippetInline
-              class="markdown-content"
-              :name="inlineSnippet.name"
-            />
-          </p>
-        </div>
+        <details>
+          <summary
+            class="cursor-pointer font-bold flex justify-between items-center"
+          >
+            <div class="name">{{ inlineSnippet.name }}</div>
+            <button
+              class="text-sm text-right items-center gap-2 cursor-pointer hover:underline"
+              @click="deleteSnippet(inlineSnippet.name, true)"
+            >
+              Remove
+            </button>
+          </summary>
+          <div
+            class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
+          >
+            <p class="markdown-content-p-4">
+              <SnippetInline :name="inlineSnippet.name" />
+            </p>
+          </div>
+        </details>
       </div>
     </template>
 

@@ -4,17 +4,31 @@ export default defineEventHandler(async (event) => {
   try {
     const { db } = getDB();
     const { name } = event.context.params as { name: string };
+    const url = getRequestURL(event);
+
+    // Check Inline
+    const urlParams = new URLSearchParams(url.search);
+    const isInline = urlParams.get("inline") === "true";
 
     if (!name.length) {
       throw new Error("[DELETE] 400: Invalid parameter, 'name' is empty");
     }
     await db.read();
     let snippets = db.data?.snippets;
-    if (!snippets) {
-      throw new Error("[DELETE] 404: snippets not found");
+    let inlineSnippets = db.data?.inlineSnippets;
+
+    if (!snippets && !inlineSnippets) {
+      throw new Error("[DELETE] 404: snippets or inlineSnippets not found");
     }
 
-    db.data.snippets = snippets.filter((snippet) => snippet.name !== name);
+    isInline
+      ? (db.data.inlineSnippets = inlineSnippets.filter(
+          (snippet) => snippet.name !== name
+        ))
+      : (db.data.snippets = snippets.filter(
+          (snippet) => snippet.name !== name
+        ));
+
     await db.write();
 
     setResponseStatus(event, 200);
