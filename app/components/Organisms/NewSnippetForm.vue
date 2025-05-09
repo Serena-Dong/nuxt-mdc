@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import type { FormValues } from "./FormValues";
 
-// Todo: add function to be implemented
 const emit = defineEmits<{
   (e: "submit", formValues: FormValues): void;
 }>();
-const formValues = defineModel<FormValues>("newPostForm", {
+const formValues = defineModel<FormValues>("newSnippetForm", {
   required: true,
 });
 
@@ -31,12 +30,14 @@ const parseMarkdownForPreview = (content: string) => {};
     <div class="flex items-center gap-6 justify-between">
       <div class="name flex-2/3">
         <label for="new-snippet__name" class="text-lg font-semibold"
-          >Title</label
+          >Name</label
         >
+
         <input
           id="new-snippet__name"
           type="text"
           placeholder="Name"
+          v-model="formValues.name"
           class="border border-gray-300 rounded p-2 w-full"
         />
       </div>
@@ -44,7 +45,7 @@ const parseMarkdownForPreview = (content: string) => {};
         <label for="new-snippet__inline" class="text-lg font-semibold"
           >Inline</label
         >
-        <USwitch default-value />
+        <USwitch default-value v-model="formValues.inline" />
       </div>
     </div>
 
@@ -56,6 +57,7 @@ const parseMarkdownForPreview = (content: string) => {};
         <textarea
           id="new-snippet__content"
           placeholder="Write your post content in markdown"
+          v-model="formValues.content"
           class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll align-text-top whitespace-pre-wrap"
         />
       </div>
@@ -71,8 +73,13 @@ const parseMarkdownForPreview = (content: string) => {};
           readonly
           class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll"
         >
-          <MDC class="markdown-content pointer-events-none" :value="''" />
-          <p class="text-gray-500 italic">Nessun contenuto da visualizzare</p>
+          <MDC
+            v-if="(formValues.content ?? '').length"
+            :key="formValues.content"
+            class="markdown-content pointer-events-none"
+            :value="formValues.content ?? ''"
+          />
+          <p v-else class="text-gray-500 italic">No content to display</p>
         </div>
       </div>
     </div>
@@ -80,7 +87,7 @@ const parseMarkdownForPreview = (content: string) => {};
       type="submit"
       class="bg-black text-white cursor-pointer self-end py-2 px-4 hover:bg-gray-800"
     >
-      Create Snippet
+      Save
     </button>
   </form>
 </template>
