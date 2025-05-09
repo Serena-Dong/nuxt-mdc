@@ -36,7 +36,11 @@ export default defineEventHandler(async (event) => {
     console.log("New snippet:", newSnippet);
 
     // Push post
-    db.update(({ snippets }) => snippets.unshift(newSnippet));
+    db.update((data) =>
+      body.inline
+        ? data.inlineSnippets.unshift(newSnippet)
+        : data.snippets.unshift(newSnippet)
+    );
 
     // Return the created post with a 201 status code
     setResponseStatus(event, 201);
