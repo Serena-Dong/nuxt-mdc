@@ -6,7 +6,6 @@ const { data: snippets, refresh: refreshSnippetList } =
   await useFetch('/api/snippets')
 const { data: inlineSnippets, refresh: refreshInlineSnippetList } =
   await useFetch('/api/snippets?inline=true')
-
 // NEW POST FORM
 const newPostData = ref<NewPostFormValues>({
   title: '',
