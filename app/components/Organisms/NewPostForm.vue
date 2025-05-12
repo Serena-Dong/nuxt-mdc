@@ -8,23 +8,22 @@ const formValues = defineModel<FormValues>("newPostForm", {
   required: true,
 });
 
-const slugPlaceholderValue = computed(() => {
-  const kebabCaseTitle = kebabify(formValues.value.title ?? "");
-
-  return formValues.value.title?.length ? kebabCaseTitle : "";
-});
+// Placeholder is visible only when the title is empty, otherwise it shows the title in kebab case
+const slugPlaceholderValue = computed(() =>
+  formValues.value.title?.length
+    ? kebabify(formValues.value.title)
+    : "Inserisci uno slug univoco per il tuo post"
+);
 
 const submitCleanup = (formBody: FormValues) => {
-  if (!(formBody.title?.length ?? 0) || !(formBody.content?.length ?? 0)) {
+  if (!formBody.title?.length || !formBody.content?.length) {
     return;
   }
 
   const validatedFormBody = {
-    title: formBody.title?.trim() ?? "",
-    content: formBody.content?.trim() ?? "",
-    slug: (formBody.slug ?? "").length
-      ? formBody.slug
-      : kebabify(formBody.title ?? ""),
+    title: formBody.title?.trim(),
+    content: formBody.content?.trim(),
+    slug: formBody.slug?.length ? formBody.slug : kebabify(formBody.title),
   };
 
   emit("submit", validatedFormBody);
