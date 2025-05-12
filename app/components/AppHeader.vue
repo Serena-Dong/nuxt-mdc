@@ -13,9 +13,9 @@ const route = useRoute();
         >
           Skip to content
         </a>
-        <NuxtLink to="/">
+        <a href="/">
           <h1 class="uppercase">Nuxt-mdc</h1>
-        </NuxtLink>
+        </a>
 
         <ul class="flex text-gray-500 gap-2">
           <li class="list-none">
