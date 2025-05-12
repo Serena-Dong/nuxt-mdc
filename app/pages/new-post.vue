@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import type { FormValues } from "~/components/Organisms/FormValues";
-import { ref } from "vue";
-
-// Snippet List
+import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
+import type { NewPostFormValues } from "~/components/Organisms/NewPostForm.props";
+//SNIPPET LIST
 const { data: snippets } = await useFetch("/api/snippets");
 const { data: inlineSnippets } = await useFetch("/api/snippets?inline=true");
 
-// Forms
-const newPostFormData = ref<FormValues>({
+// NEW POST FORM
+const newPostData = ref<NewPostFormValues>({
   title: "",
   slug: "",
   content: "",
 });
-const newSnippetFormData = ref<FormValues>({
+// New Snippet Form
+const newSnippetData = ref<NewSnippetFormValues>({
   name: "",
   inline: false,
   content: "",
 });
 
-const writeNewPost = async (submitPayload: FormValues) => {
-  newPostFormData.value = { ...submitPayload };
-  console.log("New post data:", newPostFormData.value);
+const writeNewPost = async (submitPayload: NewPostFormValues) => {
+  newPostData.value = { ...submitPayload };
+  console.log("New post data:", newPostData.value);
 
   try {
     const response = await $fetch("/api/posts", {
       method: "POST",
       body: {
-        title: newPostFormData.value.title,
-        slug: newPostFormData.value.slug,
-        content: newPostFormData.value.content,
+        title: newPostData.value.title,
+        slug: newPostData.value.slug,
+        content: newPostData.value.content,
       },
     });
     console.log("Post created successfully:", response);
@@ -38,11 +38,11 @@ const writeNewPost = async (submitPayload: FormValues) => {
   }
 };
 
-const writeNewSnippet = async (submitPayload: FormValues) => {
-  newSnippetFormData.value = { ...submitPayload };
-  console.log("New snippet data:", newSnippetFormData.value);
+const writeNewSnippet = async (submitPayload: NewSnippetFormValues) => {
+  newSnippetData.value = { ...submitPayload };
+  console.log("New snippet data:", newSnippetData.value);
 
-  const fetchURL = newSnippetFormData.value.inline
+  const fetchURL = newSnippetData.value.inline
     ? "/api/snippets?inline=true"
     : "/api/snippets";
 
@@ -50,8 +50,8 @@ const writeNewSnippet = async (submitPayload: FormValues) => {
     const response = await $fetch(fetchURL, {
       method: "POST",
       body: {
-        name: newSnippetFormData.value.name,
-        content: newSnippetFormData.value.content,
+        name: newSnippetData.value.name,
+        content: newSnippetData.value.content,
       },
     });
     console.log("Snippet created successfully:", response);
@@ -87,7 +87,7 @@ const toggleCreateSnippet = () => {
         </button>
       </div>
       <OrganismsNewPostForm
-        :new-post-form="newPostFormData"
+        :new-post-form="newPostData"
         @submit="writeNewPost"
       />
     </section>
@@ -128,11 +128,23 @@ const toggleCreateSnippet = () => {
       :snippets="snippets"
       :inline-snippets="inlineSnippets"
     />
+  </div>
+  <div v-if="showCreateSnippet" class="side-page w-full md:w-1/2">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="uppercase">Add a Snippet</h2>
+      <div class="action-buttons flex gap-2">
+        <button
+          class="bg-black text-white cursor-pointer text-sm self-end py-2 px-4 hover:bg-gray-800"
+          @click="toggleCreateSnippet"
+        >
+          Go back
+        </button>
+      </div>
+    </div>
+
     <OrganismsNewSnippetForm
-      v-else
-      :new-snippet-form="newSnippetFormData"
-      @submit="writeNewSnippet"
       class="overflow-y-auto h-full"
+      :new-snippet-form="newSnippetData"
     />
   </div>
 </template>

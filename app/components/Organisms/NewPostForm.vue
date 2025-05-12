@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { a } from "#build/ui-pro/prose";
-import type { FormValues } from "./FormValues";
+import type { NewPostFormValues } from "./NewPostForm.props";
 
 const emit = defineEmits<{
-  (e: "submit", formValues: FormValues): void;
+  (e: "submit", formValues: NewPostFormValues): void;
 }>();
-const formValues = defineModel<FormValues>("newPostForm", {
+const formValues = defineModel<NewPostFormValues>("newPostForm", {
   required: true,
 });
 
@@ -17,7 +16,7 @@ const slugPlaceholderValue = computed(() => {
     : "Inserisci uno slug univoco per il tuo post";
 });
 
-const submitCleanup = (formBody: FormValues) => {
+const submitCleanup = (formBody: NewPostFormValues) => {
   if (!formBody.title?.length || !formBody.content?.length) {
     alert("Missing post title or content");
     return;

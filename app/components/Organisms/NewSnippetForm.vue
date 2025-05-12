@@ -5,7 +5,7 @@ const emit = defineEmits<{
   (e: "submit", formValues: NewSnippetFormValues): void;
 }>();
 
-const formValues = defineModel<NewSnippetFormValues>("newPostForm", {
+const formValues = defineModel<NewSnippetFormValues>("newSnippetForm", {
   required: true,
 });
 
