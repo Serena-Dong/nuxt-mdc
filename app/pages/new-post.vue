@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
 import type { NewPostFormValues } from "~/components/Organisms/NewPostForm.props";
+
 //SNIPPET LIST
 const { data: snippets, refresh: refreshSnippetList } = await useFetch(
   "/api/snippets"
 );
-const { data: inlineSnippets } = await useFetch("/api/snippets?inline=true");
+const { data: inlineSnippets, refresh: refreshInlineSnippetList } =
+  await useFetch("/api/snippets?inline=true");
 
 // NEW POST FORM
 const newPostData = ref<NewPostFormValues>({
@@ -60,6 +62,30 @@ const writeNewSnippet = async (submitPayload: NewSnippetFormValues) => {
     window.location.reload();
   } catch (error) {
     console.error("Error creating snippet:", error);
+  }
+};
+
+const snippetToDelete = ref<string | null>(null);
+
+const deleteSnippet = async (snippetName: string, snippetInline: boolean) => {
+  snippetToDelete.value = snippetName;
+  try {
+    const url = `/api/snippets/${snippetToDelete.value}${
+      snippetInline ? "?inline=true" : ""
+    }`;
+
+    const response = await $fetch(url, {
+      method: "DELETE",
+    });
+    console.log("Snippet deleted successfully:", response);
+
+    if (snippetInline) {
+      refreshInlineSnippetList();
+    } else {
+      refreshSnippetList();
+    }
+  } catch (error) {
+    console.error("Error deleting snippet:", error);
   }
 };
 
@@ -129,7 +155,7 @@ const toggleCreateSnippet = () => {
       class="overflow-y-auto h-full"
       :snippets="snippets"
       :inline-snippets="inlineSnippets"
-      :refreshSnippetList="refreshSnippetList"
+      :deleteSnippet="deleteSnippet"
     />
   </div>
   <div v-if="showCreateSnippet" class="side-page w-full md:w-1/2">

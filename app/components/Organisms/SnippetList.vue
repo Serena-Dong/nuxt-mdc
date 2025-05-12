@@ -4,27 +4,8 @@ import type { DBSnippet } from "~~/modules/initLowDB";
 const props = defineProps<{
   snippets: DBSnippet[] | undefined;
   inlineSnippets: DBSnippet[] | undefined;
-  refreshSnippetList: Function;
+  deleteSnippet: Function;
 }>();
-
-const snippetToDelete = ref<string | null>(null);
-
-const deleteSnippet = async (snippetName: string, snippetInline: boolean) => {
-  snippetToDelete.value = snippetName;
-  try {
-    const url = `/api/snippets/${snippetToDelete.value}${
-      snippetInline ? "?inline=true" : ""
-    }`;
-
-    const response = await $fetch(url, {
-      method: "DELETE",
-    });
-    console.log("Snippet deleted successfully:", response);
-    props.refreshSnippetList();
-  } catch (error) {
-    console.error("Error deleting snippet:", error);
-  }
-};
 </script>
 
 <template>
@@ -42,7 +23,7 @@ const deleteSnippet = async (snippetName: string, snippetInline: boolean) => {
           >
             <div class="name">{{ snippet.name }}</div>
             <button
-              @click="deleteSnippet(snippet.name, false)"
+              @click="props.deleteSnippet(snippet.name, false)"
               class="text-sm text-right items-center gap-2 cursor-pointer hover:underline"
             >
               Remove
