@@ -32,11 +32,10 @@ const parseMarkdownForPreview = (content: string) => {};
         <label for="new-snippet__name" class="text-lg font-semibold"
           >Name</label
         >
-
         <input
           id="new-snippet__name"
           type="text"
-          placeholder="Name"
+          placeholder="es: snippet-name"
           v-model="formValues.name"
           class="border border-gray-300 rounded p-2 w-full"
         />
