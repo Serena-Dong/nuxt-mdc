@@ -12,6 +12,7 @@ const formValues = defineModel<NewSnippetFormValues>("newPostForm", {
 
 const submitCleanup = (formBody: NewSnippetFormValues) => {
   if (!formBody.name?.length || !formBody.content?.length) {
+    alert("Missing snippet name or content");
     return;
   }
 
