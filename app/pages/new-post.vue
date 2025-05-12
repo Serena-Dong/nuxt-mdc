@@ -1,7 +1,12 @@
 <script setup lang="ts">
+<<<<<<< HEAD
 import type { NewSnippetFormValues } from '~/components/Organisms/NewSnippetForm.props'
 import type { NewPostFormValues } from '~/components/Organisms/NewPostForm.props'
 
+=======
+import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
+import type { NewPostFormValues } from "~/components/Organisms/NewPostForm.props";
+>>>>>>> b41377e (fix: fix FormValue types)
 //SNIPPET LIST
 const { data: snippets, refresh: refreshSnippetList } =
   await useFetch('/api/snippets')
@@ -10,6 +15,7 @@ const { data: inlineSnippets, refresh: refreshInlineSnippetList } =
 
 // NEW POST FORM
 const newPostData = ref<NewPostFormValues>({
+<<<<<<< HEAD
   title: '',
   slug: '',
   content: '',
@@ -17,6 +23,15 @@ const newPostData = ref<NewPostFormValues>({
 // New Snippet Form
 const newSnippetData = ref<NewSnippetFormValues>({
   name: '',
+=======
+  title: "",
+  slug: "",
+  content: "",
+});
+// New Snippet Form
+const newSnippetForm = ref<NewSnippetFormValues>({
+  name: "",
+>>>>>>> b41377e (fix: fix FormValue types)
   inline: false,
   content: '',
 })
@@ -24,6 +39,7 @@ const writeNewPost = async (submitPayload: NewPostFormValues) => {
   newPostData.value = { ...submitPayload }
   console.log('New post data:', newPostData.value)
 
+<<<<<<< HEAD
   try {
     const response = await $fetch('/api/posts', {
       method: 'POST',
@@ -32,6 +48,34 @@ const writeNewPost = async (submitPayload: NewPostFormValues) => {
         slug: newPostData.value.slug,
         content: newPostData.value.content,
       },
+=======
+// const feedbackPopup = ref<PopupProps>({
+//   status: "",
+//   content: "",
+// });
+// const showPopup = ref(false);
+
+const writeNewPost = async (submitPayload: NewPostFormValues) => {
+  newPostData.value = { ...submitPayload };
+  console.log("New post data:", newPostData.value);
+
+  await $fetch("/api/posts", {
+    method: "POST",
+    body: {
+      title: newPostData.value.title,
+      slug: newPostData.value.slug,
+      content: newPostData.value.content,
+    },
+  })
+    .then((response) => {
+      console.log("Post created successfully:", response);
+      //   showPopup.value = true;
+      //   feedbackPopup.value = {
+      //     status: "success",
+      //     content: "Post created successfully!",
+      //   };
+      navigateTo("/");
+>>>>>>> b41377e (fix: fix FormValue types)
     })
     console.log('Post created successfully:', response)
     navigateTo('/')
@@ -169,6 +213,7 @@ const toggleCreateSnippet = () => {
           </button>
         </div>
 
+<<<<<<< HEAD
         <OrganismsNewSnippetForm
           class="h-full overflow-y-auto"
           :new-snippet-form="newSnippetData"
@@ -176,6 +221,12 @@ const toggleCreateSnippet = () => {
         />
       </div>
     </div>
+=======
+    <OrganismsNewSnippetForm
+      class="overflow-y-auto h-full"
+      :new-snippet-form="newSnippetForm"
+    />
+>>>>>>> b41377e (fix: fix FormValue types)
   </div>
 </template>
 

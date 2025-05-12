@@ -1,5 +1,6 @@
 <script setup lang="ts">
 <<<<<<< HEAD
+<<<<<<< HEAD
 import type { NewPostFormValues } from './NewPostForm.props'
 =======
 import { a } from "#build/ui-pro/prose";
@@ -10,16 +11,27 @@ const emit = defineEmits<{
   (e: 'submit', formValues: NewPostFormValues): void
 }>()
 const formValues = defineModel<NewPostFormValues>('newPostForm', {
+=======
+import type { NewPostFormValues } from "./NewPostForm.props";
+
+const emit = defineEmits<{
+  (e: "submit", formValues: NewPostFormValues): void;
+}>();
+const formValues = defineModel<NewPostFormValues>("newPostForm", {
+>>>>>>> b41377e (fix: fix FormValue types)
   required: true,
 })
 
 const slugPlaceholderValue = computed(() => {
   const kebabCaseTitle = kebabify(formValues.value.title ?? '')
 
+<<<<<<< HEAD
   return formValues.value.title?.length
     ? kebabCaseTitle
     : 'Inserisci uno slug univoco per il tuo post'
 })
+=======
+>>>>>>> b41377e (fix: fix FormValue types)
 const submitCleanup = (formBody: NewPostFormValues) => {
   if (!formBody.title?.length || !formBody.content?.length) {
 <<<<<<< HEAD
