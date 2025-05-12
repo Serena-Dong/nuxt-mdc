@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// const { data: posts } = await useFetch("/api/getMarkdown", { method: "GET" });
-
 const { data: posts, refresh: refreshPostList } = await useFetch("/api/posts", {
   method: "GET",
 });
