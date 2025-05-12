@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { NewSnippetFormValues } from '~/components/Organisms/NewSnippetForm.props'
 import type { NewPostFormValues } from '~/components/Organisms/NewPostForm.props'
-
 //SNIPPET LIST
 const { data: snippets, refresh: refreshSnippetList } =
   await useFetch('/api/snippets')
@@ -168,7 +167,6 @@ const toggleCreateSnippet = () => {
             Go back
           </button>
         </div>
-
         <OrganismsNewSnippetForm
           class="h-full overflow-y-auto"
           :new-snippet-form="newSnippetData"
