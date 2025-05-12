@@ -8,7 +8,6 @@ const emit = defineEmits<{
 const formValues = defineModel<NewSnippetFormValues>("newSnippetForm", {
   required: true,
 });
-
 const submitCleanup = (formBody: NewSnippetFormValues) => {
   if (!formBody.name?.length || !formBody.content?.length) {
     alert("Missing snippet name or content");
