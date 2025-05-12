@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import type { FormValues } from "./FormValues";
+import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
 
 // Todo: add function to be implemented
 const emit = defineEmits<{
-  (e: "submit", formValues: FormValues): void;
+  (e: "submit", formValues: NewSnippetFormValues): void;
 }>();
-const formValues = defineModel<FormValues>("newPostForm", {
+
+const formValues = defineModel<NewSnippetFormValues>("newPostForm", {
   required: true,
 });
 
-const submitCleanup = (formBody: FormValues) => {
-  if (!(formBody.name?.length ?? 0) || !(formBody.content?.length ?? 0)) {
+const submitCleanup = (formBody: NewSnippetFormValues) => {
+  if (!formBody.name?.length || !formBody.content?.length) {
     return;
   }
 
-  const validatedFormBody: FormValues = {
-    name: (formBody.name ?? "").trim(),
-    content: (formBody.content ?? "").trim(),
-    inline: formBody.inline,
+  const validatedFormBody: NewSnippetFormValues = {
+    name: formBody.name.trim(),
+    content: formBody.content.trim(),
+    inline: !!formBody.inline,
   };
 
   emit("submit", validatedFormBody);
 };
-
-const parseMarkdownForPreview = (content: string) => {};
 </script>
 
 <template>
