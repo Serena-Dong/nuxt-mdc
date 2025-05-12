@@ -9,12 +9,13 @@ const formValues = defineModel<FormValues>("newPostForm", {
   required: true,
 });
 
-// Placeholder is visible only when the title is empty, otherwise it shows the title in kebab case
-const slugPlaceholderValue = computed(() =>
-  formValues.value.title?.length
-    ? kebabify(formValues.value.title)
-    : "Inserisci uno slug univoco per il tuo post"
-);
+const slugPlaceholderValue = computed(() => {
+  const kebabCaseTitle = kebabify(formValues.value.title ?? "");
+
+  return formValues.value.title?.length
+    ? kebabCaseTitle
+    : "Inserisci uno slug univoco per il tuo post";
+});
 
 const submitCleanup = (formBody: FormValues) => {
   if (!formBody.title?.length || !formBody.content?.length) {
