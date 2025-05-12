@@ -16,7 +16,7 @@ defineProps<{
         class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
       >
         <details>
-          <summary class="cursor-pointer font-bold">
+          <summary class="cursor-pointer font-bold hover:underline">
             {{ snippet.name }}
           </summary>
           <div
