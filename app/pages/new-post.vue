@@ -1,19 +1,18 @@
 <script setup lang="ts">
-// import type { PopupProps } from "~/components/Molecules/Popup.props";
-import type { FormValues } from "~/components/Organisms/FormValues";
-import { ref } from "vue";
+import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
+import type { NewPostFormValues } from "~/components/Organisms/NewPostForm.props";
 //SNIPPET LIST
 const { data: snippets } = await useFetch("/api/snippets");
 const { data: inlineSnippets } = await useFetch("/api/snippets?inline=true");
 
 // NEW POST FORM
-const newPostData = ref<FormValues>({
+const newPostData = ref<NewPostFormValues>({
   title: "",
   slug: "",
   content: "",
 });
 // New Snippet Form
-const newSnippetForm = ref<FormValues>({
+const newSnippetForm = ref<NewSnippetFormValues>({
   name: "",
   inline: false,
   content: "",
@@ -25,7 +24,7 @@ const newSnippetForm = ref<FormValues>({
 // });
 // const showPopup = ref(false);
 
-const writeNewPost = async (submitPayload: FormValues) => {
+const writeNewPost = async (submitPayload: NewPostFormValues) => {
   newPostData.value = { ...submitPayload };
   console.log("New post data:", newPostData.value);
 
@@ -129,7 +128,10 @@ const toggleCreateSnippet = () => {
       </div>
     </div>
 
-    <OrganismsNewSnippetForm class="overflow-y-auto h-full" />
+    <OrganismsNewSnippetForm
+      class="overflow-y-auto h-full"
+      :new-snippet-form="newSnippetForm"
+    />
   </div>
 </template>
 <style scoped>
