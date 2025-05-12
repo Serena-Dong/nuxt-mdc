@@ -6,7 +6,8 @@
 export default defineEventHandler(async (event) => {
   try {
     const { db } = getDB();
-    const { name } = event.context.params as { name: string };
+
+    const { name } = getRouterParams(event);
     const { inline } = getQuery(event);
     const isInline = inline === "true";
 
