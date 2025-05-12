@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import type { DBSnippet } from "~~/modules/initLowDB";
 
-const { data: snippets, refresh: refreshSnippetList } = await useFetch(
-  "/api/snippets",
-  {
-    method: "GET",
-  }
-);
-
-defineProps<{
+const props = defineProps<{
   snippets: DBSnippet[] | undefined;
   inlineSnippets: DBSnippet[] | undefined;
+  refreshSnippetList: Function;
 }>();
 
 const snippetToDelete = ref<string | null>(null);
@@ -18,15 +12,15 @@ const snippetToDelete = ref<string | null>(null);
 const deleteSnippet = async (snippetName: string, snippetInline: boolean) => {
   snippetToDelete.value = snippetName;
   try {
-    const url = snippetInline
-      ? `/api/snippets/${snippetToDelete.value}?inline=true`
-      : `/api/snippets/${snippetToDelete.value}`;
+    const url = `/api/snippets/${snippetToDelete.value}${
+      snippetInline ? "?inline=true" : ""
+    }`;
 
     const response = await $fetch(url, {
       method: "DELETE",
     });
     console.log("Snippet deleted successfully:", response);
-    refreshSnippetList();
+    props.refreshSnippetList();
   } catch (error) {
     console.error("Error deleting snippet:", error);
   }

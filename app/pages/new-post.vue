@@ -2,7 +2,9 @@
 import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
 import type { NewPostFormValues } from "~/components/Organisms/NewPostForm.props";
 //SNIPPET LIST
-const { data: snippets } = await useFetch("/api/snippets");
+const { data: snippets, refresh: refreshSnippetList } = await useFetch(
+  "/api/snippets"
+);
 const { data: inlineSnippets } = await useFetch("/api/snippets?inline=true");
 
 // NEW POST FORM
@@ -127,6 +129,7 @@ const toggleCreateSnippet = () => {
       class="overflow-y-auto h-full"
       :snippets="snippets"
       :inline-snippets="inlineSnippets"
+      :refreshSnippetList="refreshSnippetList"
     />
   </div>
   <div v-if="showCreateSnippet" class="side-page w-full md:w-1/2">
@@ -145,6 +148,7 @@ const toggleCreateSnippet = () => {
     <OrganismsNewSnippetForm
       class="overflow-y-auto h-full"
       :new-snippet-form="newSnippetData"
+      @submit="writeNewSnippet"
     />
   </div>
 </template>
