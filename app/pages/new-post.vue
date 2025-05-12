@@ -42,12 +42,15 @@ const writeNewSnippet = async (submitPayload: FormValues) => {
   newSnippetFormData.value = { ...submitPayload };
   console.log("New snippet data:", newSnippetFormData.value);
 
+  const fetchURL = newSnippetFormData.value.inline
+    ? "/api/snippets?inline=true"
+    : "/api/snippets";
+
   try {
-    const response = await $fetch("/api/snippets", {
+    const response = await $fetch(fetchURL, {
       method: "POST",
       body: {
         name: newSnippetFormData.value.name,
-        inline: newSnippetFormData.value.inline,
         content: newSnippetFormData.value.content,
       },
     });

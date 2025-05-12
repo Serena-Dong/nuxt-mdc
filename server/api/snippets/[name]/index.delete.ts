@@ -1,14 +1,14 @@
-import { set } from "@nuxt/ui/runtime/utils/index.js";
+/**
+ * @description API endpoint to fetch all snippets
+ * @requires `inline` query parameter set to `true` to filter inline snippets
+ */
 
 export default defineEventHandler(async (event) => {
   try {
     const { db } = getDB();
     const { name } = event.context.params as { name: string };
-    const url = getRequestURL(event);
-
-    // Check Inline
-    const urlParams = new URLSearchParams(url.search);
-    const isInline = urlParams.get("inline") === "true";
+    const { inline } = getQuery(event);
+    const isInline = inline === "true";
 
     if (!name.length) {
       throw new Error("[DELETE] 400: Invalid parameter, 'name' is empty");

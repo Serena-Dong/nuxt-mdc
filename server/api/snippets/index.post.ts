@@ -1,8 +1,10 @@
-import { readBody } from "h3";
 import type { DBSnippet } from "~~/modules/initLowDB";
 import * as v from "valibot";
 import { console } from "inspector";
-
+/**
+ * @description API endpoint to fetch all snippets
+ * @requires `inline` query parameter set to `true` to filter inline snippets
+ */
 const validateBodyProperty = (property: string) =>
   v.pipe(
     v.string(`'${property}' must be a string`),
@@ -11,12 +13,14 @@ const validateBodyProperty = (property: string) =>
 
 const newSnippetBodySchema = v.object({
   name: validateBodyProperty("name"),
-  inline: v.boolean("inline must be a boolean"),
   content: v.string(),
 });
 
 export default defineEventHandler(async (event) => {
   try {
+    const { inline } = getQuery(event);
+    const isInline = inline === "true";
+
     // Parse the request body as FormValues
     const body = await readValidatedBody(event, (body) =>
       v.parse(newSnippetBodySchema, body)
@@ -29,7 +33,6 @@ export default defineEventHandler(async (event) => {
 
     const newSnippet: DBSnippet = {
       name: body.name,
-      inline: body.inline,
       content: body.content,
     };
 
@@ -37,7 +40,7 @@ export default defineEventHandler(async (event) => {
 
     // Push post
     db.update((data) =>
-      body.inline
+      isInline
         ? data.inlineSnippets.unshift(newSnippet)
         : data.snippets.unshift(newSnippet)
     );

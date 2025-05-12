@@ -12,7 +12,6 @@ export type DBPost = {
 
 export type DBSnippet = {
   name: string;
-  inline: boolean;
   content: string;
 };
 
