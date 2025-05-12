@@ -15,7 +15,6 @@ const slugPlaceholderValue = computed(() => {
     ? kebabCaseTitle
     : "Inserisci uno slug univoco per il tuo post";
 });
-
 const submitCleanup = (formBody: NewPostFormValues) => {
   if (!formBody.title?.length || !formBody.content?.length) {
     alert("Missing post title or content");

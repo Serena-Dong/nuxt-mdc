@@ -3,9 +3,8 @@ import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm
 import type { NewPostFormValues } from "~/components/Organisms/NewPostForm.props";
 
 //SNIPPET LIST
-const { data: snippets, refresh: refreshSnippetList } = await useFetch(
-  "/api/snippets"
-);
+const { data: snippets, refresh: refreshSnippetList } =
+  await useFetch("/api/snippets");
 const { data: inlineSnippets, refresh: refreshInlineSnippetList } =
   await useFetch("/api/snippets?inline=true");
 
@@ -21,7 +20,6 @@ const newSnippetData = ref<NewSnippetFormValues>({
   inline: false,
   content: "",
 });
-
 const writeNewPost = async (submitPayload: NewPostFormValues) => {
   newPostData.value = { ...submitPayload };
   console.log("New post data:", newPostData.value);
