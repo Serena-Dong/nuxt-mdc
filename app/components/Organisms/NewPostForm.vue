@@ -1,46 +1,24 @@
 <script setup lang="ts">
-<<<<<<< HEAD
-<<<<<<< HEAD
 import type { NewPostFormValues } from './NewPostForm.props'
-=======
-import { a } from "#build/ui-pro/prose";
-import type { FormValues } from "./FormValues";
->>>>>>> 45949c6 (chore: remove excess NewPostForm component + add alerts for invalid form submissions)
 
 const emit = defineEmits<{
   (e: 'submit', formValues: NewPostFormValues): void
 }>()
 const formValues = defineModel<NewPostFormValues>('newPostForm', {
-=======
-import type { NewPostFormValues } from "./NewPostForm.props";
-
-const emit = defineEmits<{
-  (e: "submit", formValues: NewPostFormValues): void;
-}>();
-const formValues = defineModel<NewPostFormValues>("newPostForm", {
->>>>>>> b41377e (fix: fix FormValue types)
   required: true,
 })
 
 const slugPlaceholderValue = computed(() => {
   const kebabCaseTitle = kebabify(formValues.value.title ?? '')
 
-<<<<<<< HEAD
   return formValues.value.title?.length
     ? kebabCaseTitle
     : 'Inserisci uno slug univoco per il tuo post'
 })
-=======
->>>>>>> b41377e (fix: fix FormValue types)
 const submitCleanup = (formBody: NewPostFormValues) => {
   if (!formBody.title?.length || !formBody.content?.length) {
-<<<<<<< HEAD
     alert('Missing post title or content')
     return
-=======
-    alert("Missing post title or content");
-    return;
->>>>>>> 45949c6 (chore: remove excess NewPostForm component + add alerts for invalid form submissions)
   }
 
   const validatedFormBody = {
@@ -53,7 +31,6 @@ const submitCleanup = (formBody: NewPostFormValues) => {
 }
 
 const addNewLineOnEnter = (e: KeyboardEvent) => {
-<<<<<<< HEAD
   const target = e.target as HTMLTextAreaElement
 
   const cursorPosition = target.selectionEnd
@@ -65,19 +42,6 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
 
   target.selectionEnd = cursorPosition + 1
 }
-=======
-  const target = e.target as HTMLTextAreaElement;
-
-  let cursorPosition = target.selectionEnd;
-
-  target.value =
-    target.value.substring(0, cursorPosition) +
-    "\n" +
-    target.value.substring(cursorPosition);
-
-  target.selectionEnd = cursorPosition + 1;
-};
->>>>>>> 45949c6 (chore: remove excess NewPostForm component + add alerts for invalid form submissions)
 </script>
 
 <template>
@@ -114,11 +78,7 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
           id="new-post__content"
           v-model="formValues.content"
           placeholder="Write your post content in markdown"
-<<<<<<< HEAD
           class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2 align-text-top whitespace-pre-wrap"
-=======
-          class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll align-text-top whitespace-pre-wrap"
->>>>>>> 45949c6 (chore: remove excess NewPostForm component + add alerts for invalid form submissions)
           @keydown.enter.prevent="addNewLineOnEnter"
         />
         <div class="flex flex-col gap-3 text-xs">
