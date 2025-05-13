@@ -96,7 +96,6 @@ const toggleCreateSnippet = () => {
   showCreateSnippet.value = !showCreateSnippet.value
 }
 </script>
-
 <template>
   <div>
     <div class="min-h-full p-4 pt-0 md:p-8 md:!pt-0">
@@ -124,6 +123,7 @@ const toggleCreateSnippet = () => {
         <h2 class="uppercase">
           {{ !showCreateSnippet ? 'Snipper List' : 'Add Snippet' }}
         </h2>
+
         <div class="action-buttons flex gap-2">
           <button
             class="cursor-pointer self-end bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
@@ -144,33 +144,21 @@ const toggleCreateSnippet = () => {
             Close
           </button>
         </div>
+      </div>
 
-        <OrganismsSnippetList
-          v-if="!showCreateSnippet"
-          class="h-full overflow-y-auto"
-          :snippets="snippets"
-          :inline-snippets="inlineSnippets"
-          :deleteSnippet="deleteSnippet"
-        />
-      </div>
-    </div>
-    <div v-if="showCreateSnippet" class="side-page w-full md:w-1/2">
-      <div class="mb-6 flex items-center justify-between">
-        <h2 class="uppercase">Add a Snippet</h2>
-        <div class="action-buttons flex gap-2">
-          <button
-            class="cursor-pointer self-end bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
-            @click="toggleCreateSnippet"
-          >
-            Go back
-          </button>
-        </div>
-        <OrganismsNewSnippetForm
-          class="h-full overflow-y-auto"
-          :new-snippet-form="newSnippetData"
-          @submit="writeNewSnippet"
-        />
-      </div>
+      <OrganismsSnippetList
+        v-if="!showCreateSnippet"
+        class="h-full overflow-y-auto"
+        :snippets="snippets"
+        :inline-snippets="inlineSnippets"
+        :delete-snippet="deleteSnippet"
+      />
+      <OrganismsNewSnippetForm
+        v-else
+        :new-snippet-form="newSnippetData"
+        class="h-full overflow-y-auto"
+        @submit="writeNewSnippet"
+      />
     </div>
   </div>
 </template>
