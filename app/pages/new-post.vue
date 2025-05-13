@@ -124,7 +124,6 @@ const toggleCreateSnippet = () => {
         <h2 class="uppercase">
           {{ !showCreateSnippet ? 'Snipper List' : 'Add Snippet' }}
         </h2>
-
         <div class="action-buttons flex gap-2">
           <button
             class="cursor-pointer self-end bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"

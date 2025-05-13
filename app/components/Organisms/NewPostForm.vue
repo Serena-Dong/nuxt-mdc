@@ -39,7 +39,6 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
     target.value.substring(0, cursorPosition) +
     '\n' +
     target.value.substring(cursorPosition)
-
   target.selectionEnd = cursorPosition + 1
 }
 </script>
