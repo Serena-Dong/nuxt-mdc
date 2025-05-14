@@ -1,23 +1,23 @@
 <script setup lang="ts">
-const route = useRoute();
+const route = useRoute()
 </script>
 <template>
   <header>
     <div class="p-4 md:px-8">
       <div
-        class="flex justify-between items-center border-b-2 border-gray-400 pb-2"
+        class="flex items-center justify-between border-b-2 border-gray-400 pb-2"
       >
         <a
           href="#main-content"
-          class="box-border fixed z-50 top-0 bg-sky-700 border-2 border-white rounded-b-md text-white text-sm font-medium px-4 py-2 pb-4 -translate-y-full focus:translate-y-0 transition-transform block"
+          class="fixed top-0 z-50 box-border block -translate-y-full rounded-b-md border-2 border-white bg-sky-700 px-4 py-2 pb-4 text-sm font-medium text-white transition-transform focus:translate-y-0"
         >
           Skip to content
         </a>
-        <a href="/">
+        <NuxtLink to="/">
           <h1 class="uppercase">Nuxt-mdc</h1>
-        </a>
+        </NuxtLink>
 
-        <ul class="flex text-gray-500 gap-2">
+        <ul class="flex gap-2 text-gray-500">
           <li class="list-none">
             <NuxtLink
               class="flex items-center gap-2"
