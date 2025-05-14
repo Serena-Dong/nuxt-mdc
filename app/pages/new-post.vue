@@ -61,6 +61,7 @@ const writeNewSnippet = async (submitPayload: NewSnippetFormValues) => {
     } else {
       refreshSnippetList()
     }
+    showCreateSnippet.value = false
   } catch (error) {
     console.error('Error creating snippet:', error)
   }
