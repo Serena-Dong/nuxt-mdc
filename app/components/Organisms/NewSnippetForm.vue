@@ -38,7 +38,6 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
           v-model="formValues.name"
           type="text"
           placeholder="Name"
-          v-model="formValues.name"
           class="w-full rounded border border-gray-300 p-2"
         />
       </div>
@@ -59,7 +58,6 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
           id="new-snippet__content"
           v-model="formValues.content"
           placeholder="Write your post content in markdown"
-          v-model="formValues.content"
           class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2 align-text-top whitespace-pre-wrap"
         />
       </div>

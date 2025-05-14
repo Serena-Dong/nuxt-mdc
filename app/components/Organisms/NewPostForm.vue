@@ -49,8 +49,8 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
         <label for="new-post__title" class="text-lg font-semibold">Title</label>
         <input
           id="new-post__title"
-          type="text"
           v-model="formValues.title"
+          type="text"
           placeholder="Title"
           class="mb-4 w-full rounded border border-gray-300 p-2"
         />
@@ -59,8 +59,8 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
         <label for="new-post__slug" class="text-lg font-semibold"> Slug </label>
         <input
           id="new-post__slug"
-          type="text"
           v-model="formValues.slug"
+          type="text"
           :placeholder="slugPlaceholderValue"
           class="mb-4 w-full rounded border border-gray-300 p-2"
         />

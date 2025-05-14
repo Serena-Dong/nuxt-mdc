@@ -9,7 +9,6 @@ defineProps<{
 defineEmits<{
   (e: 'delete-snippet', snippetName: string, snippetInline: boolean): void
 }>()
-
 </script>
 
 <template>
@@ -25,11 +24,10 @@ defineEmits<{
           <summary
             class="flex cursor-pointer items-center justify-between font-bold"
           >
-
             <div class="name">{{ snippet.name }}</div>
             <button
-              @click="$emit('delete-snippet', snippet.name, false)"
               class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
+              @click="$emit('delete-snippet', snippet.name, false)"
             >
               Remove
             </button>
