@@ -1,36 +1,47 @@
 <script setup lang="ts">
-import type { FormValues } from "./FormValues";
+import type { NewPostFormValues } from './NewPostForm.props'
 
 const emit = defineEmits<{
-  (e: "submit", formValues: FormValues): void;
-}>();
-const formValues = defineModel<FormValues>("newPostForm", {
+  (e: 'submit', formValues: NewPostFormValues): void
+}>()
+const formValues = defineModel<NewPostFormValues>('newPostForm', {
   required: true,
-});
+})
 
-const slugPlaceholderValue = computed(() => {
-  const kebabCaseTitle = kebabify(formValues.value.title ?? "");
+// Placeholder is visible only when the title is empty, otherwise it shows the title in kebab case
+const slugPlaceholderValue = computed(() =>
+  formValues.value.title?.length
+    ? kebabify(formValues.value.title)
+    : 'Inserisci uno slug univoco per il tuo post'
+)
 
-  return formValues.value.title?.length ? kebabCaseTitle : "";
-});
-
-const submitCleanup = (formBody: FormValues) => {
-  if (!(formBody.title?.length ?? 0) || !(formBody.content?.length ?? 0)) {
-    return;
+const submitCleanup = (formBody: NewPostFormValues) => {
+  if (!formBody.title?.length || !formBody.content?.length) {
+    alert('Missing post title or content')
+    return
   }
 
   const validatedFormBody = {
-    title: formBody.title?.trim() ?? "",
-    content: formBody.content?.trim() ?? "",
-    slug: (formBody.slug ?? "").length
-      ? formBody.slug
-      : kebabify(formBody.title ?? ""),
-  };
+    title: formBody.title?.trim(),
+    content: formBody.content?.trim(),
+    slug: formBody.slug?.length ? formBody.slug : kebabify(formBody.title),
+  }
 
-  emit("submit", validatedFormBody);
-};
+  emit('submit', validatedFormBody)
+}
 
-const parseMarkdownForPreview = (content: string) => {};
+const addNewLineOnEnter = (e: KeyboardEvent) => {
+  const target = e.target as HTMLTextAreaElement
+
+  const cursorPosition = target.selectionEnd
+
+  target.value =
+    target.value.substring(0, cursorPosition) +
+    '\n' +
+    target.value.substring(cursorPosition)
+
+  target.selectionEnd = cursorPosition + 1
+}
 </script>
 
 <template>
@@ -43,7 +54,7 @@ const parseMarkdownForPreview = (content: string) => {};
           type="text"
           v-model="formValues.title"
           placeholder="Title"
-          class="border border-gray-300 rounded p-2 mb-4 w-full"
+          class="mb-4 w-full rounded border border-gray-300 p-2"
         />
       </div>
       <div class="slug flex-1/2">
@@ -54,11 +65,11 @@ const parseMarkdownForPreview = (content: string) => {};
           disabled
           v-model="formValues.slug"
           :placeholder="slugPlaceholderValue"
-          class="border border-gray-300 rounded p-2 mb-4 w-full"
+          class="mb-4 w-full rounded border border-gray-300 p-2"
         />
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="col-span-1">
         <label for="new-post__content" class="text-lg font-semibold">
           Content
@@ -67,17 +78,10 @@ const parseMarkdownForPreview = (content: string) => {};
           id="new-post__content"
           v-model="formValues.content"
           placeholder="Write your post content in markdown"
-          class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll align-text-top whitespace-pre-wrap"
-          @keydown.enter.prevent="
-            (e) => {
-              console.log(e);
-              if (e.target) {
-                (e.target as HTMLTextAreaElement).value += '\n';
-              }
-            }
-          "
+          class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2 align-text-top whitespace-pre-wrap"
+          @keydown.enter.prevent="addNewLineOnEnter"
         />
-        <div class="text-xs flex flex-col gap-3">
+        <div class="flex flex-col gap-3 text-xs">
           <p>
             <i>
               <b>Tip:</b> You can use the following shortcuts to insert snippets
@@ -115,7 +119,7 @@ const parseMarkdownForPreview = (content: string) => {};
         <div
           id="new-post__content__preview"
           readonly
-          class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll"
+          class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2"
         >
           <MDC
             v-if="(formValues.content ?? '').length"
@@ -129,7 +133,7 @@ const parseMarkdownForPreview = (content: string) => {};
     </div>
     <button
       type="submit"
-      class="bg-black uppercase text-white cursor-pointer self-end py-2 px-4 hover:bg-gray-800"
+      class="cursor-pointer self-end bg-black px-4 py-2 text-white uppercase hover:bg-gray-800"
     >
       Save
     </button>
