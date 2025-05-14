@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import type { NewSnippetFormValues } from "~/components/Organisms/NewSnippetForm.props";
+import type { NewSnippetFormValues } from '~/components/Organisms/NewSnippetForm.props'
 
 // Todo: add function to be implemented
 const emit = defineEmits<{
-  (e: "submit", formValues: NewSnippetFormValues): void;
-}>();
+  (e: 'submit', formValues: NewSnippetFormValues): void
+}>()
 
-const formValues = defineModel<NewSnippetFormValues>("newSnippetForm", {
+const formValues = defineModel<NewSnippetFormValues>('newSnippetForm', {
   required: true,
-});
+})
 
 const submitCleanup = (formBody: NewSnippetFormValues) => {
   if (!formBody.name?.length || !formBody.content?.length) {
-    alert("Missing snippet name or content");
-    return;
+    alert('Missing snippet name or content')
+    return
   }
 
   const validatedFormBody: NewSnippetFormValues = {
     name: formBody.name.trim(),
     content: formBody.content.trim(),
     inline: !!formBody.inline,
-  };
+  }
 
-  emit("submit", validatedFormBody);
-};
+  emit('submit', validatedFormBody)
+}
 </script>
 
 <template>
   <form class="flex flex-col gap-6" @submit.prevent="submitCleanup(formValues)">
-    <div class="flex items-center gap-6 justify-between">
+    <div class="flex items-center justify-between gap-6">
       <div class="name flex-2/3">
         <label for="new-snippet__name" class="text-lg font-semibold"
           >Title</label
@@ -37,10 +37,10 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
           id="new-snippet__name"
           type="text"
           placeholder="Name"
-          class="border border-gray-300 rounded p-2 w-full"
+          class="w-full rounded border border-gray-300 p-2"
         />
       </div>
-      <div class="flex-1/3 gap-3 flex flex-col items-center justify-center">
+      <div class="flex flex-1/3 flex-col items-center justify-center gap-3">
         <label for="new-snippet__inline" class="text-lg font-semibold"
           >Inline</label
         >
@@ -48,7 +48,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="col-span-1">
         <label for="new-snippet__content" class="text-lg font-semibold">
           Content
@@ -56,7 +56,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         <textarea
           id="new-snippet__content"
           placeholder="Write your post content in markdown"
-          class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll align-text-top whitespace-pre-wrap"
+          class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2 align-text-top whitespace-pre-wrap"
         />
       </div>
       <div class="col-span-1 flex flex-col">
@@ -69,7 +69,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         <div
           id="new-snippet__content__preview"
           readonly
-          class="border border-gray-300 rounded p-2 mb-4 w-full h-40 overflow-y-scroll"
+          class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2"
         >
           <MDC class="markdown-content pointer-events-none" :value="''" />
           <p class="text-gray-500 italic">Nessun contenuto da visualizzare</p>
@@ -78,7 +78,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
     </div>
     <button
       type="submit"
-      class="bg-black text-white cursor-pointer self-end py-2 px-4 hover:bg-gray-800"
+      class="cursor-pointer self-end bg-black px-4 py-2 text-white hover:bg-gray-800"
     >
       Create Snippet
     </button>

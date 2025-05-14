@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { DBSnippet } from "~~/modules/initLowDB";
+import type { DBSnippet } from '~~/modules/initLowDB'
 
 defineProps<{
-  snippets: DBSnippet[] | undefined;
-  inlineSnippets: DBSnippet[] | undefined;
-}>();
+  snippets: DBSnippet[] | undefined
+  inlineSnippets: DBSnippet[] | undefined
+}>()
 </script>
 
 <template>
@@ -13,14 +13,14 @@ defineProps<{
       <div
         v-for="snippet in snippets"
         :key="snippet.name"
-        class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
+        class="flex flex-col justify-between gap-3 border-b-2 border-gray-400 py-2"
       >
         <details>
           <summary class="cursor-pointer font-bold">
             {{ snippet.name }}
           </summary>
           <div
-            class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
+            class="pointer-events-none rounded-md border-2 border-gray-300 bg-gray-100 p-4 text-gray-400"
           >
             <p class="markdown-content-p-4">
               <Snippet :name="snippet.name" />
@@ -34,7 +34,7 @@ defineProps<{
       <div
         v-for="inlineSnippet in inlineSnippets"
         :key="inlineSnippet.name"
-        class="flex justify-between border-b-2 border-gray-400 py-2 gap-2"
+        class="flex justify-between gap-2 border-b-2 border-gray-400 py-2"
       >
         <p class="text-bold">{{ inlineSnippet.name }}</p>
         <div class="pointer-events-none text-gray-400">
