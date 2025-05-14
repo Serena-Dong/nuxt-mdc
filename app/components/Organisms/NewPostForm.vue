@@ -62,7 +62,6 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
         <input
           id="new-post__slug"
           type="text"
-          disabled
           v-model="formValues.slug"
           :placeholder="slugPlaceholderValue"
           class="mb-4 w-full rounded border border-gray-300 p-2"
