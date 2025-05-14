@@ -38,26 +38,6 @@ const writeNewPost = async (submitPayload: NewPostFormValues) => {
   }
 }
 
-const writeNewSnippet = async (submitPayload: NewSnippetFormValues) => {
-  newSnippetFormData.value = { ...submitPayload }
-  console.log('New snippet data:', newSnippetFormData.value)
-
-  try {
-    const response = await $fetch('/api/snippets', {
-      method: 'POST',
-      body: {
-        name: newSnippetFormData.value.name,
-        inline: newSnippetFormData.value.inline,
-        content: newSnippetFormData.value.content,
-      },
-    })
-    console.log('Snippet created successfully:', response)
-    window.location.reload()
-  } catch (error) {
-    console.error('Error creating snippet:', error)
-  }
-}
-
 // Sidebar Function
 const showSnippetSidebar = ref(false)
 const showCreateSnippet = ref(false)
@@ -128,7 +108,6 @@ const toggleCreateSnippet = () => {
         v-else
         :new-snippet-form="newSnippetFormData"
         class="h-full overflow-y-auto"
-        @submit="writeNewSnippet"
       />
     </div>
   </div>
