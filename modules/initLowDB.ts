@@ -11,8 +11,8 @@ export type DBPost = {
 }
 
 export type DBSnippet = {
+  id: string
   name: string
-  inline: boolean
   content: string
 }
 
@@ -133,10 +133,9 @@ const getDefaultSnippets = (dirName: string): DBSnippet[] => {
     file.endsWith('.md')
   )
 
-  return snippetNamesList.map(snippet => ({
+  return snippetNamesList.map((snippet, index) => ({
+    id: `${index + 1}`,
     name: snippet.replace('.md', ''),
-    // TODO: REMOVE THIS WHEN snippet-sidebar-branch has been merged
-    inline: dirName === 'inline-snippets',
     content: readFileSync(resolve(snippetDir, snippet), 'utf-8'),
   }))
 }
