@@ -8,6 +8,7 @@ const emit = defineEmits<{
 const formValues = defineModel<NewSnippetFormValues>('newSnippetForm', {
   required: true,
 })
+
 const submitCleanup = (formBody: NewSnippetFormValues) => {
   if (!formBody.name?.length || !formBody.content?.length) {
     alert('Missing snippet name or content')
@@ -34,6 +35,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
 
         <input
           id="new-snippet__name"
+          v-model="formValues.name"
           type="text"
           placeholder="Name"
           v-model="formValues.name"
@@ -55,6 +57,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         </label>
         <textarea
           id="new-snippet__content"
+          v-model="formValues.content"
           placeholder="Write your post content in markdown"
           v-model="formValues.content"
           class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2 align-text-top whitespace-pre-wrap"

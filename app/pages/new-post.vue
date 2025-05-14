@@ -7,7 +7,7 @@ const { data: snippets, refresh: refreshSnippetList } =
 const { data: inlineSnippets, refresh: refreshInlineSnippetList } =
   await useFetch('/api/snippets?inline=true')
 // NEW POST FORM
-const newPostData = ref<NewPostFormValues>({
+const newPostFormData = ref<NewPostFormValues>({
   title: '',
   slug: '',
   content: '',
@@ -19,8 +19,8 @@ const newSnippetData = ref<NewSnippetFormValues>({
   content: '',
 })
 const writeNewPost = async (submitPayload: NewPostFormValues) => {
-  newPostData.value = { ...submitPayload }
-  console.log('New post data:', newPostData.value)
+  newPostFormData.value = { ...submitPayload }
+  console.log('New post data:', newPostFormData.value)
 
   try {
     const response = await $fetch('/api/posts', {

@@ -34,7 +34,7 @@ const deletePost = async () => {
       v-if="confirmDeletePopup"
       class="confirm-delete-popup absolute top-0 right-0 z-50 flex flex-col gap-4 rounded bg-white p-4 shadow-md"
     >
-      <p>Vuoi davvero rimuovere questo post?</p>
+      <p>Are you sure you want to delete this post?</p>
       <div class="flex justify-between">
         <button
           id="confirm-button"
