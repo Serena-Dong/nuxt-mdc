@@ -24,7 +24,7 @@ defineEmits<{
           <summary
             class="flex cursor-pointer items-center justify-between font-bold"
           >
-            <div class="name">{{ snippet.name }}</div>
+            <div class="name hover:underline">{{ snippet.name }}</div>
             <button
               class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
               @click="$emit('delete-snippet', snippet.name, false)"

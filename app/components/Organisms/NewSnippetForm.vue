@@ -37,7 +37,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
           id="new-snippet__name"
           v-model="formValues.name"
           type="text"
-          placeholder="Name"
+          placeholder="es: snippet-name"
           class="w-full rounded border border-gray-300 p-2"
         />
       </div>
@@ -45,7 +45,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         <label for="new-snippet__inline" class="text-lg font-semibold"
           >Inline</label
         >
-        <USwitch default-value v-model="formValues.inline" />
+        <USwitch v-model="formValues.inline" default-value />
       </div>
     </div>
 
