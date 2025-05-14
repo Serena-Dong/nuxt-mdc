@@ -42,9 +42,9 @@ const writeNewSnippet = async (submitPayload: NewSnippetFormValues) => {
   newSnippetData.value = { ...submitPayload }
   console.log('New snippet data:', newSnippetData.value)
 
-  const fetchURL = newSnippetData.value.inline
-    ? '/api/snippets?inline=true'
-    : '/api/snippets'
+  const snippetInline = newSnippetData.value.inline
+
+  const fetchURL = snippetInline ? '/api/snippets?inline=true' : '/api/snippets'
 
   try {
     const response = await $fetch(fetchURL, {
@@ -55,7 +55,12 @@ const writeNewSnippet = async (submitPayload: NewSnippetFormValues) => {
       },
     })
     console.log('Snippet created successfully:', response)
-    window.location.reload()
+
+    if (snippetInline) {
+      refreshInlineSnippetList()
+    } else {
+      refreshSnippetList()
+    }
   } catch (error) {
     console.error('Error creating snippet:', error)
   }
@@ -151,7 +156,7 @@ const toggleCreateSnippet = () => {
         class="h-full overflow-y-auto"
         :snippets="snippets"
         :inline-snippets="inlineSnippets"
-        :delete-snippet="deleteSnippet"
+        @delete-snippet="deleteSnippet"
       />
       <OrganismsNewSnippetForm
         v-else

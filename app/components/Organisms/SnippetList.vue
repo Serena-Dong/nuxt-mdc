@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import type { DBSnippet } from "~~/modules/initLowDB";
+import type { DBSnippet } from '~~/modules/initLowDB'
 
-const props = defineProps<{
-  snippets: DBSnippet[] | undefined;
-  inlineSnippets: DBSnippet[] | undefined;
-  deleteSnippet: Function;
-}>();
+defineProps<{
+  snippets: DBSnippet[] | undefined
+  inlineSnippets: DBSnippet[] | undefined
+}>()
+
+defineEmits<{
+  (e: 'delete-snippet', snippetName: string, snippetInline: boolean): void
+}>()
 </script>
 
 <template>
@@ -15,22 +18,22 @@ const props = defineProps<{
       <div
         v-for="snippet in snippets"
         :key="snippet.name"
-        class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
+        class="flex flex-col justify-between gap-3 border-b-2 border-gray-400 py-2"
       >
         <details>
           <summary
-            class="cursor-pointer font-bold flex justify-between items-center"
+            class="flex cursor-pointer items-center justify-between font-bold"
           >
             <div class="name">{{ snippet.name }}</div>
             <button
-              @click="props.deleteSnippet(snippet.name, false)"
-              class="text-sm text-right items-center gap-2 cursor-pointer hover:underline"
+              @click="$emit('delete-snippet', snippet.name, false)"
+              class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
             >
               Remove
             </button>
           </summary>
           <div
-            class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
+            class="pointer-events-none rounded-md border-2 border-gray-300 bg-gray-100 p-4 text-gray-400"
           >
             <p class="markdown-content-p-4">
               <Snippet :name="snippet.name" />
@@ -45,22 +48,22 @@ const props = defineProps<{
       <div
         v-for="inlineSnippet in inlineSnippets"
         :key="inlineSnippet.name"
-        class="flex flex-col gap-3 justify-between border-b-2 border-gray-400 py-2"
+        class="flex flex-col justify-between gap-3 border-b-2 border-gray-400 py-2"
       >
         <details>
           <summary
-            class="cursor-pointer font-bold flex justify-between items-center"
+            class="flex cursor-pointer items-center justify-between font-bold"
           >
             <div class="name">{{ inlineSnippet.name }}</div>
             <button
-              class="text-sm text-right items-center gap-2 cursor-pointer hover:underline"
-              @click="deleteSnippet(inlineSnippet.name, true)"
+              class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
+              @click="$emit('delete-snippet', inlineSnippet.name, true)"
             >
               Remove
             </button>
           </summary>
           <div
-            class="text-gray-400 bg-gray-100 p-4 rounded-md pointer-events-none border-2 border-gray-300"
+            class="pointer-events-none rounded-md border-2 border-gray-300 bg-gray-100 p-4 text-gray-400"
           >
             <p class="markdown-content-p-4">
               <SnippetInline :name="inlineSnippet.name" />

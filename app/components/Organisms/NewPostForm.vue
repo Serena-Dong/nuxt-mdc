@@ -8,13 +8,12 @@ const formValues = defineModel<NewPostFormValues>('newPostForm', {
   required: true,
 })
 
-const slugPlaceholderValue = computed(() => {
-  const kebabCaseTitle = kebabify(formValues.value.title ?? '')
-
-  return formValues.value.title?.length
-    ? kebabCaseTitle
+const slugPlaceholderValue = computed(() =>
+  formValues.value.title?.length
+    ? kebabify(formValues.value.title)
     : 'Inserisci uno slug univoco per il tuo post'
-})
+)
+
 const submitCleanup = (formBody: NewPostFormValues) => {
   if (!formBody.title?.length || !formBody.content?.length) {
     alert('Missing post title or content')
@@ -61,7 +60,6 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
         <input
           id="new-post__slug"
           type="text"
-          disabled
           v-model="formValues.slug"
           :placeholder="slugPlaceholderValue"
           class="mb-4 w-full rounded border border-gray-300 p-2"
