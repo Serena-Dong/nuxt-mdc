@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { NewSnippetFormValues } from '~/components/Organisms/NewSnippetForm.props'
 
-// Todo: add function to be implemented
 const emit = defineEmits<{
   (e: 'submit', formValues: NewSnippetFormValues): void
 }>()
@@ -31,12 +30,13 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
     <div class="flex items-center justify-between gap-6">
       <div class="name flex-2/3">
         <label for="new-snippet__name" class="text-lg font-semibold"
-          >Title</label
+          >Name</label
         >
         <input
           id="new-snippet__name"
+          v-model="formValues.name"
           type="text"
-          placeholder="Name"
+          placeholder="es: snippet-name"
           class="w-full rounded border border-gray-300 p-2"
         />
       </div>
@@ -44,7 +44,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         <label for="new-snippet__inline" class="text-lg font-semibold"
           >Inline</label
         >
-        <USwitch default-value />
+        <USwitch v-model="formValues.inline" default-value />
       </div>
     </div>
 
@@ -55,6 +55,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         </label>
         <textarea
           id="new-snippet__content"
+          v-model="formValues.content"
           placeholder="Write your post content in markdown"
           class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2 align-text-top whitespace-pre-wrap"
         />
@@ -71,8 +72,13 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
           readonly
           class="mb-4 h-40 w-full overflow-y-scroll rounded border border-gray-300 p-2"
         >
-          <MDC class="markdown-content pointer-events-none" :value="''" />
-          <p class="text-gray-500 italic">Nessun contenuto da visualizzare</p>
+          <MDC
+            v-if="formValues.content?.length"
+            :key="formValues.content"
+            class="markdown-content pointer-events-none"
+            :value="formValues.content"
+          />
+          <p v-else class="text-gray-500 italic">No content to display</p>
         </div>
       </div>
     </div>
@@ -80,7 +86,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
       type="submit"
       class="cursor-pointer self-end bg-black px-4 py-2 text-white hover:bg-gray-800"
     >
-      Create Snippet
+      Save
     </button>
   </form>
 </template>

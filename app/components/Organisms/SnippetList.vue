@@ -10,14 +10,22 @@ defineProps<{
 <template>
   <div class="flex flex-col gap-3">
     <template v-if="snippets?.length">
+      <h3 class="mt-4">Snippets</h3>
       <div
         v-for="snippet in snippets"
         :key="snippet.name"
         class="flex flex-col justify-between gap-3 border-b-2 border-gray-400 py-2"
       >
         <details>
-          <summary class="cursor-pointer font-bold">
-            {{ snippet.name }}
+          <summary
+            class="flex cursor-pointer items-center justify-between font-bold"
+          >
+            <div class="name hover:underline">{{ snippet.name }}</div>
+            <button
+              class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
+            >
+              Remove
+            </button>
           </summary>
           <div
             class="pointer-events-none rounded-md border-2 border-gray-300 bg-gray-100 p-4 text-gray-400"
@@ -29,24 +37,36 @@ defineProps<{
         </details>
       </div>
     </template>
+
     <template v-if="inlineSnippets?.length">
       <h3 class="mt-4">Inline snippets</h3>
       <div
         v-for="inlineSnippet in inlineSnippets"
         :key="inlineSnippet.name"
-        class="flex justify-between gap-2 border-b-2 border-gray-400 py-2"
+        class="flex flex-col justify-between gap-3 border-b-2 border-gray-400 py-2"
       >
-        <p class="text-bold">{{ inlineSnippet.name }}</p>
-        <div class="pointer-events-none text-gray-400">
-          <p class="markdown-content">
-            <SnippetInline
-              class="markdown-content"
-              :name="inlineSnippet.name"
-            />
-          </p>
-        </div>
+        <details>
+          <summary
+            class="flex cursor-pointer items-center justify-between font-bold"
+          >
+            <div class="name">{{ inlineSnippet.name }}</div>
+            <button
+              class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
+            >
+              Remove
+            </button>
+          </summary>
+          <div
+            class="pointer-events-none rounded-md border-2 border-gray-300 bg-gray-100 p-4 text-gray-400"
+          >
+            <p class="markdown-content-p-4">
+              <SnippetInline :name="inlineSnippet.name" />
+            </p>
+          </div>
+        </details>
       </div>
     </template>
+
     <div
       v-if="!inlineSnippets?.length && !snippets?.length"
       class="py-5 text-center"
@@ -57,5 +77,3 @@ defineProps<{
     </div>
   </div>
 </template>
-
-<style scoped></style>

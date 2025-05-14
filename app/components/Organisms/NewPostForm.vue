@@ -58,10 +58,7 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
         />
       </div>
       <div class="slug flex-1/2">
-        <label for="new-post__slug" class="text-lg font-semibold">
-          Slug
-          <span class="text-xs">(kebab case)</span>
-        </label>
+        <label for="new-post__slug" class="text-lg font-semibold"> Slug </label>
         <input
           id="new-post__slug"
           type="text"
@@ -129,9 +126,7 @@ const addNewLineOnEnter = (e: KeyboardEvent) => {
             class="markdown-content pointer-events-none"
             :value="formValues.content ?? ''"
           />
-          <p v-else class="text-gray-500 italic">
-            Nessun contenuto da visualizzare
-          </p>
+          <p v-else class="text-gray-500 italic">No content to display</p>
         </div>
       </div>
     </div>
