@@ -12,6 +12,6 @@
 </template>
 <script setup lang="ts">
 defineProps<{
-  open?: boolean;
-}>();
+  open?: boolean
+}>()
 </script>

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { withTrailingSlash, withLeadingSlash, joinURL } from "ufo";
-import { useRuntimeConfig, computed } from "#imports";
+import { withTrailingSlash, withLeadingSlash, joinURL } from 'ufo'
+import { useRuntimeConfig, computed } from '#imports'
 
-import ImageComponent from "#build/mdc-image-component.mjs";
+import ImageComponent from '#build/mdc-image-component.mjs'
 
 const props = defineProps({
   src: {
     type: String,
-    default: "",
+    default: '',
   },
   alt: {
     type: String,
-    default: "",
+    default: '',
   },
   width: {
     type: [String, Number],
@@ -21,19 +21,19 @@ const props = defineProps({
     type: [String, Number],
     default: undefined,
   },
-});
+})
 
 const refinedSrc = computed(() => {
-  if (props.src?.startsWith("/") && !props.src.startsWith("//")) {
+  if (props.src?.startsWith('/') && !props.src.startsWith('//')) {
     const _base = withLeadingSlash(
       withTrailingSlash(useRuntimeConfig().app.baseURL)
-    );
-    if (_base !== "/" && !props.src.startsWith(_base)) {
-      return joinURL(_base, props.src);
+    )
+    if (_base !== '/' && !props.src.startsWith(_base)) {
+      return joinURL(_base, props.src)
     }
   }
-  return props.src;
-});
+  return props.src
+})
 </script>
 <template>
   <NuxtImg

@@ -1,18 +1,18 @@
 <script setup lang="ts">
 type UserData = {
-  name: string;
-  username: string;
-  email: string;
-};
+  name: string
+  username: string
+  email: string
+}
 
 const { data: users } = await useFetch<UserData[]>(
-  "https://jsonplaceholder.typicode.com/users"
-);
+  'https://jsonplaceholder.typicode.com/users'
+)
 </script>
 
 <template>
-  <table class="w-full" v-if="users?.length">
-    <tr v-for="user in users">
+  <table v-if="users?.length" class="w-full">
+    <tr v-for="user in users" :key="user.username">
       <td class="border-b-2 border-gray-400 py-2">
         <p class="text-bold text-black">{{ user.name }}</p>
       </td>

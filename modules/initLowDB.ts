@@ -11,9 +11,9 @@ export type DBPost = {
 }
 
 export type DBSnippet = {
-  name: string;
-  content: string;
-};
+  name: string
+  content: string
+}
 
 export type JsonDBData = {
   posts: DBPost[]
@@ -132,8 +132,8 @@ const getDefaultSnippets = (dirName: string): DBSnippet[] => {
     file.endsWith('.md')
   )
 
-  return snippetNamesList.map((snippet, index) => ({
-    name: snippet.replace(".md", ""),
-    content: readFileSync(resolve(snippetDir, snippet), "utf-8"),
-  }));
-};
+  return snippetNamesList.map(snippet => ({
+    name: snippet.replace('.md', ''),
+    content: readFileSync(resolve(snippetDir, snippet), 'utf-8'),
+  }))
+}

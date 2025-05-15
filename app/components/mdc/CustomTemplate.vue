@@ -3,7 +3,7 @@
     <div class="text-center">
       <MDCSlot name="title" />
     </div>
-    <div class="columns-2 md:py-4 gap-4">
+    <div class="columns-2 gap-4 md:py-4">
       <MDCSlot name="content" />
     </div>
   </section>

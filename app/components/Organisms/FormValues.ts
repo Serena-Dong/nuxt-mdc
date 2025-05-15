@@ -1,7 +1,7 @@
 export type FormValues = {
-  title?: string;
-  name?: string;
-  slug?: string;
-  content?: string;
-  inline?: boolean;
-};
+  title?: string
+  name?: string
+  slug?: string
+  content?: string
+  inline?: boolean
+}

@@ -1,8 +1,8 @@
-@import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import 'tailwindcss';
+@import '@nuxt/ui-pro';
 
 /* BASE LAYOUT */
-@import "./markdown.css";
+@import './markdown.css';
 
 @layer base {
   body {
@@ -10,7 +10,7 @@
   }
 
   a {
-    @apply cursor-pointer border-b-2 border-transparent hover:border-black transition duration-300;
+    @apply cursor-pointer border-b-2 border-transparent transition duration-300 hover:border-black;
   }
 
   h1 {
@@ -34,7 +34,7 @@
 
   /* Table styles */
   table {
-    @apply w-full border-collapse mb-4;
+    @apply mb-4 w-full border-collapse;
   }
 
   th,
@@ -43,7 +43,7 @@
   }
 
   th {
-    @apply bg-gray-200 font-medium text-left;
+    @apply bg-gray-200 text-left font-medium;
   }
 
   tr:nth-child(even) {
@@ -55,7 +55,7 @@
   }
 
   caption {
-    @apply text-sm text-gray-600 mt-1 mb-2;
+    @apply mt-1 mb-2 text-sm text-gray-600;
   }
 
   ul li {

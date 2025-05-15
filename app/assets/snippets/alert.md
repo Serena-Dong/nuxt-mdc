@@ -8,5 +8,5 @@ This is an alert message I need to be rendering as Markdown. This alert can be i
 This snippet is very big and should also have some code inside it.
 
 ```js
-console.log("Hello, world!");
+console.log('Hello, world!')
 ```
