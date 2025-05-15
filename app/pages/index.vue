@@ -47,8 +47,10 @@ const deletePost = async () => {
           id="abort-button"
           class="bg-black px-4 py-2 text-white hover:bg-gray-800"
           @click="
-            confirmDeletePopup = false
-            postToDelete = null
+            () => {
+              confirmDeletePopup = false
+              postToDelete = null
+            }
           "
         >
           No

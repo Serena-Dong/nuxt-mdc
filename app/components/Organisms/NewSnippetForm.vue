@@ -32,6 +32,7 @@ const submitCleanup = (formBody: NewSnippetFormValues) => {
         <label for="new-snippet__name" class="text-lg font-semibold"
           >Name</label
         >
+
         <input
           id="new-snippet__name"
           v-model="formValues.name"

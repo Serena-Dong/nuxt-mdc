@@ -5,6 +5,10 @@ defineProps<{
   snippets: DBSnippet[] | undefined
   inlineSnippets: DBSnippet[] | undefined
 }>()
+
+defineEmits<{
+  (e: 'delete-snippet', snippetName: string, snippetInline: boolean): void
+}>()
 </script>
 
 <template>
@@ -23,6 +27,7 @@ defineProps<{
             <div class="name hover:underline">{{ snippet.name }}</div>
             <button
               class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
+              @click="$emit('delete-snippet', snippet.name, false)"
             >
               Remove
             </button>
@@ -52,6 +57,7 @@ defineProps<{
             <div class="name">{{ inlineSnippet.name }}</div>
             <button
               class="cursor-pointer items-center gap-2 text-right text-sm hover:underline"
+              @click="$emit('delete-snippet', inlineSnippet.name, true)"
             >
               Remove
             </button>
