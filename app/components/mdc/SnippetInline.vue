@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { DBSnippet } from '~~/modules/initLowDB'
+
 const props = defineProps<{
   name: string
 }>()
@@ -15,14 +17,19 @@ if (isRecursiveSnippet) {
   provide(SNIPPET_INJECTION_KEY, new Set([...parentSnippets, props.name]))
 }
 
-const { data: snippetContent } = isRecursiveSnippet
-  ? { data: ref(null) }
-  : await useFetch(`/api/snippets/${props.name}`, {
-      method: 'GET',
-      query: {
-        inline: true,
-      },
-    })
+const { data: snippetContent } = await useAsyncData<DBSnippet | null>(
+  async () => {
+    if (isRecursiveSnippet) {
+      return null
+    } else
+      return await $fetch(`/api/snippets/${props.name}`, {
+        method: 'GET',
+        query: {
+          inline: true,
+        },
+      })
+  }
+)
 </script>
 <template>
   <Suspense suspensible>
