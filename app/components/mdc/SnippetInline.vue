@@ -7,11 +7,13 @@ const SNIPPET_INJECTION_KEY = 'snippet-inline-parent-nodes'
 const parentSnippets = inject<Set<string>>(SNIPPET_INJECTION_KEY, new Set())
 const isRecursiveSnippet = parentSnippets.has(props.name)
 
-isRecursiveSnippet
-  ? console.log(
-      `Snippet inline "${props.name}" is repeating and will not be fetched again.`
-    )
-  : provide(SNIPPET_INJECTION_KEY, new Set([...parentSnippets, props.name]))
+if (isRecursiveSnippet) {
+  console.log(
+    `Snippet inline "${props.name}" is repeating and will not be fetched again.`
+  )
+} else {
+  provide(SNIPPET_INJECTION_KEY, new Set([...parentSnippets, props.name]))
+}
 
 const { data: snippetContent } = isRecursiveSnippet
   ? { data: ref(null) }
