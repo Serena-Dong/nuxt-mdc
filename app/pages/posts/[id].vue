@@ -1,12 +1,17 @@
 <script setup lang="ts">
 const route = useRoute()
+
+// Article Data Call
 const { data: articleContent } = await useFetch(
   `/api/posts/${route.params.id}`,
-  { method: 'GET' }
+  {
+    method: 'GET',
+  }
 )
-
-const title = route.params.id
-const cleanTitle = typeof title === 'string' ? title.replace(/-/g, ' ') : ''
+// Article Title
+const articleTitle = computed(() => {
+  return articleContent.value?.postInfo?.title
+})
 
 const preprocessMd = (content: string) => {
   return content?.replace(
@@ -22,7 +27,8 @@ const preprocessMd = (content: string) => {
 </script>
 <template>
   <div class="flex min-h-full flex-col gap-4 p-4 pt-0 md:p-8 md:pt-0">
-    <div class="content-header">
+    <!-- Article Header -->
+    <div class="article-header">
       <div class="flex items-center justify-between">
         <div class="go-back">
           <NuxtLink to="/" class="flex items-center gap-2 uppercase">
@@ -35,12 +41,18 @@ const preprocessMd = (content: string) => {
         </div>
       </div>
     </div>
-    <div class="content-main">
-      <div class="flex flex-col gap-4">
-        <h1 class="uppercase">{{ cleanTitle }}</h1>
+
+    <!-- Article Main / Data -->
+    <div class="article-main article-content md:px-26 md:py-6">
+      <div class="flex flex-col gap-8">
+        <!-- Article Title -->
+        <h1 class="uppercase">
+          {{ articleTitle }}
+        </h1>
+        <!-- Article Content -->
         <MDC
           v-if="articleContent?.content"
-          class="markdown-content mx-auto min-h-full max-w-200"
+          class="markdown-content min-h-full"
           tag="article"
           :value="preprocessMd(articleContent?.content)"
         />

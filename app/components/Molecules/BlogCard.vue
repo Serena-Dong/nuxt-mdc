@@ -14,32 +14,36 @@ const parsedDate = computed(() => new Date(props.date))
     <NuxtLink class="flex items-center py-4" :to="`/posts/${slug}`">
       <!-- ID -->
       <div class="basis-1/12">
-        <p># {{ postNumber }}</p>
+        <p class="blog-card-id"># {{ postNumber }}</p>
       </div>
-      <!-- Content -->
+      <!-- Title -->
       <div class="basis-7/12">
-        <p class="text-xl">{{ title }}</p>
+        <p class="blog-card-title text-xl">{{ title }}</p>
       </div>
       <!-- Actions -->
       <div class="flex basis-4/12 items-center justify-between gap-2">
-        <p class="text-right text-sm">
+        <!-- Date -->
+        <p class="blog-card-date text-right text-sm">
           <span class="font-bold"> Date: </span>
           {{
             `${parsedDate.getDay()}-${parsedDate.getMonth()}-${parsedDate.getFullYear()}`
           }}
-          <i>
-            {{ parsedDate.getHours() }}:{{
-              parsedDate.getMinutes() < 10
-                ? '0' + parsedDate.getMinutes()
-                : parsedDate.getMinutes()
-            }}
-          </i>
+          {{ parsedDate.getHours() }}:{{
+            parsedDate.getMinutes() < 10
+              ? '0' + parsedDate.getMinutes()
+              : parsedDate.getMinutes()
+          }}
         </p>
-        <p class="hidden items-center gap-2 text-right text-sm md:flex">
+        <!-- Read More -->
+        <p
+          class="blog-card-read-more hidden items-center gap-2 text-right text-sm md:flex"
+        >
           Read more<icon name="line-md:arrow-right"></icon>
         </p>
+
+        <!-- Delete -->
         <button
-          class="hidden cursor-pointer items-center gap-2 text-right text-sm md:flex"
+          class="blog-card-delete hidden cursor-pointer items-center gap-2 text-right text-sm md:flex"
           @click.prevent="$emit('deletePost', slug)"
         >
           Delete<icon name="line-md:document-delete"></icon>

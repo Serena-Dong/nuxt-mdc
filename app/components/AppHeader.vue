@@ -13,10 +13,13 @@ const route = useRoute()
         >
           Skip to content
         </a>
+
+        <!-- Logo -->
         <NuxtLink to="/">
-          <h1 class="uppercase">Nuxt-mdc</h1>
+          <h1 class="text-xl uppercase">Nuxt-mdc</h1>
         </NuxtLink>
 
+        <!-- Action Buttons -->
         <ul class="flex gap-2 text-gray-500">
           <li class="list-none">
             <NuxtLink
