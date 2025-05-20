@@ -7,7 +7,7 @@ const generate = computed(
     props.id &&
     ((typeof headings?.anchorLinks === 'boolean' &&
       headings?.anchorLinks === true) ||
-      (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h2))
+      (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h6))
 )
 </script>
 <template>
