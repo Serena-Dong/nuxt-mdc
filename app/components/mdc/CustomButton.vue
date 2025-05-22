@@ -1,10 +1,8 @@
 <script setup lang="ts">
-const props = defineProps({
-  color: {
-    type: String,
-    default: 'red',
-  },
-})
+const props = defineProps<{
+  color: string
+  href?: string
+}>()
 
 const buttonClass = computed(() => {
   switch (props.color) {
@@ -16,13 +14,27 @@ const buttonClass = computed(() => {
       return 'bg-yellow-500 hover:bg-yellow-600'
     case 'red':
       return 'bg-red-500 hover:bg-red-600'
+    case 'orange':
+      return 'bg-orange-500 hover:bg-orange-600'
+    case 'pink':
+      return 'bg-pink-500 hover:bg-pink-600'
+    case 'purple':
+      return 'bg-purple-500 hover:bg-purple-600'
     default:
       return 'bg-gray-500 hover:bg-gray-600'
   }
 })
+
+const linkOrButton = computed(() => {
+  return props.href ? 'a' : 'button'
+})
 </script>
 <template>
-  <button :class="[buttonClass, `custom-button rounded px-4 py-2`]">
+  <component
+    :is="linkOrButton"
+    :class="[buttonClass, `custom-button rounded px-4 py-2`]"
+    :href="href"
+  >
     <MDCSlot />
-  </button>
+  </component>
 </template>

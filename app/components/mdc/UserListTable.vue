@@ -6,13 +6,23 @@ type UserData = {
 }
 
 const { data: users } = await useFetch<UserData[]>(
-  'https://jsonplaceholder.typicode.com/users'
+  'https://jsonplaceholder.typicode.com/users',
+  {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    transform: data => {
+      console.log('data', data)
+      return data ? data : []
+    },
+  }
 )
 </script>
 
 <template>
-  <Suspense suspensible>
-    <table v-if="users?.length" class="w-full">
+  <table v-if="users?.length" class="w-full">
+    <tbody>
       <tr v-for="user in users" :key="user.username">
         <td class="border-b-2 border-gray-400 py-2">
           <p class="text-bold text-black">{{ user.name }}</p>
@@ -24,7 +34,7 @@ const { data: users } = await useFetch<UserData[]>(
           <p class="text-bold text-black">{{ user.email }}</p>
         </td>
       </tr>
-    </table>
-    <div v-else><p>UserListTable contains no users</p></div>
-  </Suspense>
+    </tbody>
+  </table>
+  <div v-else><p>UserListTable contains no users</p></div>
 </template>
