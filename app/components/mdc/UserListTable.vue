@@ -12,10 +12,6 @@ const { data: users } = await useFetch<UserData[]>(
     headers: {
       'Content-Type': 'application/json',
     },
-    transform: data => {
-      console.log('data', data)
-      return data ? data : []
-    },
   }
 )
 </script>
